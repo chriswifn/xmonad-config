@@ -1,7 +1,6 @@
 #+TITLE: XMonad Config
 #+AUTHOR: Christian Hageloch
 #+PROPERTY: header-args :tangle xmonad.hs
-#+auto_tangle: t
 #+STARTUP: showeverything
 
 This is my Xmonad config. It does not contain a bar and is very minimal.
@@ -142,7 +141,7 @@ Window rules are the killer feature of standalone window managers. Using a windo
 #+end_src
 
 * Keybindings
-I use XMonad.Util.EZConfig so I want to set the default keybindings myself using this method. Otherwise use `additionalKeys`.
+I use XMonad.Util.EZConfig so I want to set the default keybindings myself using this method. Otherwise use additionalKeys.
 For the dmenu scripts see [[https://github.com/chriswifn/dotfiles/tree/main/home/.local/bin][dotfiles repository.]]
 #+begin_src haskell
   myKeys = \c -> mkKeymap c $
