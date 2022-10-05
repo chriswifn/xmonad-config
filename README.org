@@ -4,7 +4,7 @@
 #+auto_tangle: t
 #+STARTUP: showeverything
 
-This is my Xmonad config. It does not contain a bar.
+This is my Xmonad config. It does not contain a bar and is very minimal.
 XMonad is a dynamic tiling X11 window manager.
 
 * Table Of Contents :toc:
