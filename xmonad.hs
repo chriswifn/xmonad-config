@@ -57,6 +57,7 @@ myStartupHook = do
   spawnOnce "xsetroot -cursor_name left_pr"
   spawnOnce "setxkbmap -option caps:escape"
   spawnOnce "/usr/bin/lxpolkit"
+  spawnOnce "dunst"
   spawnOnce "/usr/bin/emacs --daemon"
   setWMName "LG3D"
 
