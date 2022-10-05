@@ -6,6 +6,7 @@
 
 This is my Xmonad config. It does not contain a bar and is very minimal.
 XMonad is a dynamic tiling X11 window manager.
+This config is too small to split up into seperate files so I took some inspiration from DistroTube and wrote it in ORG-Mode.
 
 * Table Of Contents :toc:
 - [[#imports][Imports]]
