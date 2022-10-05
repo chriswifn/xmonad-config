@@ -36,10 +36,10 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True 
+myFocusFollowsMouse = False 
 
 myClickJustFocuses :: Bool
-myClickJustFocuses = True
+myClickJustFocuses = True 
 
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 

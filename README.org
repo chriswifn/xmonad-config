@@ -62,10 +62,10 @@ The additional space in myTerminal and myEmacs is because I want to use them lat
   myModMask = mod4Mask
 
   myFocusFollowsMouse :: Bool
-  myFocusFollowsMouse = True 
+  myFocusFollowsMouse = False 
 
   myClickJustFocuses :: Bool
-  myClickJustFocuses = True
+  myClickJustFocuses = True 
 
   myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
