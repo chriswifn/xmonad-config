@@ -5,24 +5,21 @@
 This is my XMonad Configuration. It is very minimal by design.
 
 * Table of Contents :toc:
-- [[#what-is-does-not-have][What is does not have]]
-- [[#what-it-does-have][What it does have]]
+- [[#features][Features]]
 - [[#installation][Installation]]
 
-* What is does not have
-- A bar (no XMobar, no Polybar), because a bar is pointless when using window rules
-- No scratchpads, because scratchpads are pointless when using window rules
-- No custom prompts because I don't know what I would use them for (I use custom [[https://github.com/chriswifn/dotfiles/tree/main/home/.local/bin/dmenu][dmenu scripts]].)
-- ... 
-
-* What it does have
-- Window rules (the killer feature of standalone window managers)
-- Keyboard shortcuts setup with XMonad.Util.EZConfig
-- sticky Clients
+* Features
+- No bar, no scratchpads (yes that is a feature, because nobody needs a bar or scratchpads if they use window rules)
+- custom window rules (the killer feature of standalone window managers)
+- keyboard shortcuts with XMonad.Util.EZConfig for easy key declaration and keychords
+- keyboard shortcut for sticky clients
 
 * Installation
 - Install xmonad and xmonad-contrib
-- clone the repository
   #+begin_src bash
+    sudo pacman -S xmonad xmonad-contrib
+  #+end_src
+- clone the repository
+  ,#+begin_src bash
     git clone https://github.com/chriswifn/xmonad-config.git ~/.config/xmonad
   #+end_src
