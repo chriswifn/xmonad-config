@@ -14,7 +14,7 @@ import XMonad.Layout.ToggleLayouts (toggleLayouts)
 
 myLayoutHook = toggleLayouts (noBorders Full) $ smartBorders $ myLayout
 
-myLayout = tiled ||| noBorders Full
+myLayout = tiled ||| noBorders tiled ||| noBorders Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
