@@ -5,6 +5,7 @@ import System.Exit
 
 -- Actions
 import XMonad.Actions.CycleWS (nextScreen, prevScreen)
+import XMonad.Actions.CopyWindow
 
 -- Data
 import Data.Monoid
@@ -109,6 +110,8 @@ myKeys = \c -> mkKeymap c $
   , ("M-<Space>", sendMessage NextLayout)
   , ("M-S-<Space>", setLayout $ XMonad.layoutHook c)
   , ("M-n", refresh)
+  , ("M-s", windows copyToAll)
+  , ("M-S-s", killAllOtherCopies)
   , ("M-<Tab>", windows W.focusDown)
   , ("M-j", windows W.focusDown)
   , ("M-k", windows W.focusUp)
@@ -173,7 +176,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-z", spawn $ "zathura")
   , ("M-S-f", spawn $ "pcmanfm")
   , ("M-v", spawn $ "virt-manager")
-  , ("M-S-s", spawn $ "slock")]
+  , ("M-S-C-s", spawn $ "slock")]
   ++
 
   -- scripts

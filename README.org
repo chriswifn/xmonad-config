@@ -25,6 +25,7 @@ This config is too small to split up into seperate files so I took some inspirat
 
   -- Actions
   import XMonad.Actions.CycleWS (nextScreen, prevScreen)
+  import XMonad.Actions.CopyWindow
 
   -- Data
   import Data.Monoid
@@ -152,6 +153,8 @@ For the dmenu scripts see [[https://github.com/chriswifn/dotfiles/tree/main/home
     , ("M-<Space>", sendMessage NextLayout)
     , ("M-S-<Space>", setLayout $ XMonad.layoutHook c)
     , ("M-n", refresh)
+    , ("M-s", windows copyToAll)
+    , ("M-S-s", killAllOtherCopies)
     , ("M-<Tab>", windows W.focusDown)
     , ("M-j", windows W.focusDown)
     , ("M-k", windows W.focusUp)
@@ -216,7 +219,7 @@ For the dmenu scripts see [[https://github.com/chriswifn/dotfiles/tree/main/home
     , ("M-z", spawn $ "zathura")
     , ("M-S-f", spawn $ "pcmanfm")
     , ("M-v", spawn $ "virt-manager")
-    , ("M-S-s", spawn $ "slock")]
+    , ("M-S-C-s", spawn $ "slock")]
     ++
 
     -- scripts
