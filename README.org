@@ -20,6 +20,6 @@ This is my XMonad Configuration. It is very minimal by design.
     sudo pacman -S xmonad xmonad-contrib
   #+end_src
 - clone the repository
-  ,#+begin_src bash
+  #+begin_src bash
     git clone https://github.com/chriswifn/xmonad-config.git ~/.config/xmonad
   #+end_src
