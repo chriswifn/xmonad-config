@@ -61,7 +61,7 @@ The additional space in myTerminal and myEmacs is because I want to use them lat
   myModMask = mod4Mask
 
   myFocusFollowsMouse :: Bool
-  myFocusFollowsMouse = False 
+  myFocusFollowsMouse = True 
 
   myClickJustFocuses :: Bool
   myClickJustFocuses = True 
@@ -126,17 +126,17 @@ Window rules are the killer feature of standalone window managers. Using a windo
     , className =? "error"          --> doFloat
     , className =? "dialog"         --> doFloat
     , className =? "splash"         --> doFloat
-    , className =? "firefox"        --> viewShift (myWorkspaces !! 1)
-    , className =? "st-256color"    --> viewShift (myWorkspaces !! 3)
-    , className =? "Emacs"          --> viewShift (myWorkspaces !! 2)
-    , className =? "Alacritty"      --> viewShift (myWorkspaces !! 3)
-    , className =? "Zathura"        --> viewShift (myWorkspaces !! 6)
-    , className =? "mpv"            --> viewShift (myWorkspaces !! 8)
-    , className =? "mus"            --> viewShift (myWorkspaces !! 7)
-    , className =? "Virt-manager"   --> viewShift (myWorkspaces !! 9)
-    , className =? "file"           --> viewShift (myWorkspaces !! 4)
-    , className =? "nvim"           --> viewShift (myWorkspaces !! 5)
-    , className =? "dev"            --> viewShift (myWorkspaces !! 5)]
+    , className =? "firefox"        --> viewShift (myWorkspaces !! 0)
+    , className =? "st-256color"    --> viewShift (myWorkspaces !! 2)
+    , className =? "Emacs"          --> viewShift (myWorkspaces !! 1)
+    , className =? "Alacritty"      --> viewShift (myWorkspaces !! 2)
+    , className =? "Zathura"        --> viewShift (myWorkspaces !! 5)
+    , className =? "mpv"            --> viewShift (myWorkspaces !! 7)
+    , className =? "mus"            --> viewShift (myWorkspaces !! 6)
+    , className =? "Virt-manager"   --> viewShift (myWorkspaces !! 8)
+    , className =? "file"           --> viewShift (myWorkspaces !! 3)
+    , className =? "nvim"           --> viewShift (myWorkspaces !! 4)
+    , className =? "dev"            --> viewShift (myWorkspaces !! 4)]
     where viewShift = doF . liftM2 (.) W.greedyView W.shift
 #+end_src
 
@@ -170,28 +170,11 @@ For the dmenu scripts see [[https://github.com/chriswifn/dotfiles/tree/main/home
     , ("M-S-q", io (exitWith ExitSuccess))]
     ++
 
-    -- Switch to workspace
-    [ ("M-1", windows $ W.greedyView $ myWorkspaces !! 1)
-    , ("M-2", windows $ W.greedyView $ myWorkspaces !! 2)
-    , ("M-3", windows $ W.greedyView $ myWorkspaces !! 3)
-    , ("M-4", windows $ W.greedyView $ myWorkspaces !! 4)
-    , ("M-5", windows $ W.greedyView $ myWorkspaces !! 5)
-    , ("M-6", windows $ W.greedyView $ myWorkspaces !! 6)
-    , ("M-7", windows $ W.greedyView $ myWorkspaces !! 7)
-    , ("M-8", windows $ W.greedyView $ myWorkspaces !! 8)
-    , ("M-9", windows $ W.greedyView $ myWorkspaces !! 9)]
-    ++
-
-    -- Send client to workspace
-    [ ("M-S-1", windows $ W.shift $ myWorkspaces !! 1)
-    , ("M-S-2", windows $ W.shift $ myWorkspaces !! 2)
-    , ("M-S-3", windows $ W.shift $ myWorkspaces !! 3)
-    , ("M-S-4", windows $ W.shift $ myWorkspaces !! 4)
-    , ("M-S-5", windows $ W.shift $ myWorkspaces !! 5)
-    , ("M-S-6", windows $ W.shift $ myWorkspaces !! 6)
-    , ("M-S-7", windows $ W.shift $ myWorkspaces !! 7)
-    , ("M-S-8", windows $ W.shift $ myWorkspaces !! 8)
-    , ("M-S-9", windows $ W.shift $ myWorkspaces !! 9)
+    -- Send client to workspace and switch workspace
+    [ (otherModMasks ++ "M-" ++ key, action tag)
+        | (tag, key)  <- zip myWorkspaces (map (\x -> "" ++ show x ++ "") [1..9])
+        , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
+                                     , ("S-", windows . W.shift)]
     ]
     ++
 
