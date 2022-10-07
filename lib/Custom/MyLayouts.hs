@@ -7,12 +7,21 @@ import XMonad.Layout.NoBorders
 -- toggle Layouts
 import XMonad.Layout.ToggleLayouts (toggleLayouts)
 
+import XMonad.Layout.ShowWName
+
+myShowWNameTheme :: SWNConfig
+myShowWNameTheme = def
+  { swn_font              = "xft:Monoid:size=40"
+  , swn_fade              = 1.0
+  , swn_bgcolor           = "#323232"
+  , swn_color             = "#ffffff"
+  }
+
 -- smartBorders removes the border if there is only one screen and only
 -- one client on a workspace
 -- noBorders removes the border. In this case I only use this for the
 -- Fullscreen layout
-
-myLayoutHook = toggleLayouts (noBorders Full) $ smartBorders $ myLayout
+myLayoutHook = showWName' myShowWNameTheme $ toggleLayouts (noBorders Full) $ smartBorders $ myLayout
 
 -- I only use tiled and noBorders tiled here because I  toggle
 -- fullscreen layout in MyKeys.hs
