@@ -11,7 +11,7 @@ import XMonad.Layout.ShowWName
 
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
-  { swn_font              = "xft:Monoid:size=40"
+  { swn_font              = "xft:Monoid:size=20"
   , swn_fade              = 1.0
   , swn_bgcolor           = "#323232"
   , swn_color             = "#ffffff"
