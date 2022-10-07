@@ -102,7 +102,8 @@ myKeys = \c -> mkKeymap c $
   [ ("M-e e", spawn $ myEmacs)
   , ("M-e b", spawn $ myEmacs ++ ("--eval '(ibuffer)'"))
   , ("M-e d", spawn $ myEmacs ++ ("--eval '(dired nil)'"))
-  , ("M-e t", spawn $ myEmacs ++ ("--eval '(+vterm/here nil)'"))]
+  , ("M-e t", spawn $ myEmacs ++ ("--eval '(+vterm/here nil)'"))
+  , ("M-e m", spawn $ myEmacs ++ ("--eval '(emms-smart-browse)'"))]
   ++
 
   -- TERMINAL PROGRAMS
