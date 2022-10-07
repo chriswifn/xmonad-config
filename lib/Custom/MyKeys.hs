@@ -66,6 +66,9 @@ myKeys = \c -> mkKeymap c $
   -- force floating client back to tiling
   , ("M-S-t", withFocused $ windows . W.sink)
 
+  -- make a client fullscreen
+  , ("M-f", sendMessage $ Toggle "Full")
+
   -- focus on next screen
   , ("M-.", nextScreen)
 
@@ -91,12 +94,9 @@ myKeys = \c -> mkKeymap c $
   --   If that functionality is not wanted use W.view instead of W.greedyView
   -- + Shifting clients to other workspaces with [Mod + Shift + (1..9)]
   -- + Tag like functionality: tag clients to a specific workspace with [Mod + Shift + Control + (1..9)]
-  [("M-" ++ m ++ k, windows $ f i)
-       | (i, k) <- zip (myWorkspaces) (map show [1 :: Int ..])
-       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  ++
-
-  [ ("M-f", sendMessage $ Toggle "Full") ]
+  [ ("M-" ++ m ++ k, windows $ f i)
+        | (i, k) <- zip (myWorkspaces) (map show [1 :: Int ..])
+        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
   ++
 
   -- EMACS PROGRAMS
