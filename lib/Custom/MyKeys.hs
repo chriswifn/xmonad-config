@@ -9,6 +9,7 @@ import System.Exit
 import XMonad.Actions.CycleWS (nextScreen, prevScreen)
 import XMonad.Actions.CopyWindow
 import XMonad.Util.EZConfig (additionalKeysP, mkKeymap)
+import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
 import Custom.MyVariables
 
 -- Keymaps
@@ -84,12 +85,18 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-q", io (exitWith ExitSuccess))]
   ++
 
-  -- SEND CLIENT TO WORKSPACE AND SWITCH WORKSPACE
-  [ (otherModMasks ++ "M-" ++ key, action tag)
-      | (tag, key)  <- zip myWorkspaces (map (\x -> "" ++ show x ++ "") [1..9])
-      , (otherModMasks, action) <- [ ("", windows . W.greedyView) -- or W.view
-                                   , ("S-", windows . W.shift)]
-  ]
+  -- WORKSPACE STUFF
+  -- this includes:
+  -- + Viewing workspaces with [Mod + (1..9)] <-- done with greedyView to also shift monitors around.
+  --   If that functionality is not wanted use W.view instead of W.greedyView
+  -- + Shifting clients to other workspaces with [Mod + Shift + (1..9)]
+  -- + Tag like functionality: tag clients to a specific workspace with [Mod + Shift + Control + (1..9)]
+  [("M-" ++ m ++ k, windows $ f i)
+       | (i, k) <- zip (myWorkspaces) (map show [1 :: Int ..])
+       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
+  ++
+
+  [ ("M-f", sendMessage $ Toggle "Full") ]
   ++
 
   -- EMACS PROGRAMS

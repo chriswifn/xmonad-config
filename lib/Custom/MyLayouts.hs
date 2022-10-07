@@ -14,7 +14,10 @@ import XMonad.Layout.ToggleLayouts (toggleLayouts)
 
 myLayoutHook = toggleLayouts (noBorders Full) $ smartBorders $ myLayout
 
-myLayout = tiled ||| noBorders tiled ||| noBorders Full
+-- I only use tiled and noBorders tiled here because I  toggle
+-- fullscreen layout in MyKeys.hs
+-- All the layouts that I use: tiled (Tall), tiled (Tall) but with no borders, fullscreen (Full)
+myLayout = tiled ||| noBorders tiled
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
