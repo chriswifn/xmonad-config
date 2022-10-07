@@ -9,7 +9,7 @@ This is my XMonad Configuration. It is very minimal by design.
 - [[#installation][Installation]]
 
 * Features
-- No bar, no scratchpads (yes that is a feature, because nobody needs a bar or scratchpads if they use window rules)
+- No bar: I use window rules an ShowWName (yes that is a feature)
 - custom window rules (the killer feature of standalone window managers)
 - keyboard shortcuts with XMonad.Util.EZConfig for easy key declaration and keychords
 - Dwm like "tag"-functionality (it is not the same as dwm but it works for me)
