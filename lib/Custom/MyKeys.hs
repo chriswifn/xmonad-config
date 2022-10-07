@@ -90,14 +90,12 @@ myKeys = \c -> mkKeymap c $
 
   -- WORKSPACE STUFF
   -- this includes:
-  -- + Viewing workspaces with [Mod + (1..9)] <-- done with view
-  --   because I don't like my monitors being swapt around (greedyView)
-  --   If that functionality is not wanted use W.view instead of W.greedyView
+  -- + Viewing workspaces with [Mod + (1..9)] <-- done with greedyView (view is also an option)
   -- + Shifting clients to other workspaces with [Mod + Shift + (1..9)]
   -- + Tag like functionality: tag clients to a specific workspace with [Mod + Shift + Control + (1..9)]
   [ ("M-" ++ m ++ k, windows $ f i)
         | (i, k) <- zip (myWorkspaces) (map show [1 :: Int ..])
-        , (f, m) <- [(W.view, ""), (W.shift, "S-"), (copy, "S-C-")]]
+        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
   ++
 
   -- EMACS PROGRAMS
