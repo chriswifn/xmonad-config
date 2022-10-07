@@ -1,6 +1,7 @@
 -- Base (these imports are necessary)
 import XMonad
 import XMonad.Hooks.ManageDocks (manageDocks)
+import XMonad.Hooks.EwmhDesktops
 
 -- Custom (my custom libraries)
 import Custom.MyVariables
@@ -11,7 +12,7 @@ import Custom.MyKeys
 
 -- the main function: this is where the magic happens
 main :: IO ()
-main = xmonad defaults
+main = xmonad $ ewmh $ defaults
 
 defaults = def {
   -- simple stuff
