@@ -23,8 +23,8 @@ myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = True 
 
--- myWorkspaces = ["1","2","3","4","5","6","7","8","9"]
-myWorkspaces    = ["1:WWW","2:EMACS","3:TERM","4:FILE","5:DEV","6:DOC","7:MUS","8:VID","9:VIRT"]
+-- workspace names
+myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","8:vid","9:virt"]
 
 -- border widht: a nice big border
 myBorderWidth :: Dimension 
