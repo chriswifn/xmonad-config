@@ -34,6 +34,7 @@ myManageHook = composeAll
   , className =? "mus"            --> viewShift (myWorkspaces !! 6)
   , className =? "Virt-manager"   --> viewShift (myWorkspaces !! 8)
   , className =? "file"           --> viewShift (myWorkspaces !! 3)
+  , className =? "Pcmanfm"        --> viewShift (myWorkspaces !! 3)
   , className =? "nvim"           --> viewShift (myWorkspaces !! 4)
   , className =? "dev"            --> viewShift (myWorkspaces !! 4)]
   where viewShift = doF . liftM2 (.) W.view W.shift
