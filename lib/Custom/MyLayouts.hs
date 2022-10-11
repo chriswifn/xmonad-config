@@ -37,7 +37,7 @@ myLayoutHook = showWName' myShowWNameTheme $ toggleLayouts (noBorders Full) $ sm
 -- I only use tiled and noBorders tiled here because I  toggle
 -- fullscreen layout in MyKeys.hs
 -- All the layouts that I use: tiled (Tall), tiled (Tall) but with no borders, fullscreen (Full)
-myLayout = tiled ||| noBorders (tabbed shrinkText myTabConfig)
+myLayout = noBorders tiled ||| noBorders (tabbed shrinkText myTabConfig)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
