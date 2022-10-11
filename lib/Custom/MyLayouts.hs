@@ -4,11 +4,18 @@ module Custom.MyLayouts where
 import XMonad
 -- lets you use noBorders and smartBorders
 import XMonad.Layout.NoBorders
--- toggle Layouts
+-- toggle between layouts 
 import XMonad.Layout.ToggleLayouts (toggleLayouts)
+-- the tabbed layout is nice for certain tasks (with web browsers)
 import XMonad.Layout.Tabbed
-
+-- perworkspaces lets me set certain layouts on certain workspaces
+import XMonad.Layout.PerWorkspace
+-- I don't use a bar, so seeing the name of the workspace when I switch to it
+-- is nice but is not a must have
 import XMonad.Layout.ShowWName
+
+-- for perworkspace to work
+import Custom.MyVariables
 
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
@@ -30,13 +37,17 @@ myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hintin
 
 -- smartBorders removes the border if there is only one screen and only
 -- one client on a workspace
--- noBorders removes the border. In this case I only use this for the
--- Fullscreen layout
-myLayoutHook = showWName' myShowWNameTheme $ toggleLayouts (noBorders Full) $ smartBorders $ myLayout
+-- noBorders removes the border. 
+-- I set workspace 1 to the tabbed layout because that's where my browser is going to launch
+myLayoutHook = showWName' myShowWNameTheme
+               $ toggleLayouts (noBorders Full)
+               $ smartBorders
+               $ onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig))
+               $ myLayout
 
--- I only use tiled and noBorders tiled here because I  toggle
+-- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
--- All the layouts that I use: tiled (Tall), tiled (Tall) but with no borders, fullscreen (Full)
+-- All the layouts that I use: tiled (Tall), tabbed, fullscreen (Full)
 myLayout = noBorders tiled ||| noBorders (tabbed shrinkText myTabConfig)
   where
      -- default tiling algorithm partitions the screen into two panes
