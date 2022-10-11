@@ -21,8 +21,8 @@ myShowWNameTheme = def
 myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
                   , activeColor = "#323232"
                   , inactiveColor = "#1e1e1e"
-                  , activeBorderColor = "#ffffff"
-                  , inactiveBorderColor = "#ccdfe7"
+                  , activeBorderColor = "#323232"
+                  , inactiveBorderColor = "#1e1e1e"
                   , activeTextColor = "#ffffff"
                   , inactiveTextColor = "#ccdfe7"
                   }
