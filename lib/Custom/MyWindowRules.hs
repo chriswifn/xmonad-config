@@ -36,4 +36,4 @@ myManageHook = composeAll
   , className =? "file"           --> viewShift (myWorkspaces !! 3)
   , className =? "nvim"           --> viewShift (myWorkspaces !! 4)
   , className =? "dev"            --> viewShift (myWorkspaces !! 4)]
-  where viewShift = doF . liftM2 (.) W.greedyView W.shift
+  where viewShift = doF . liftM2 (.) W.view W.shift
