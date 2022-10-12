@@ -47,7 +47,7 @@ myLayoutHook = showWName' myShowWNameTheme
 -- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
 -- All the layouts that I use: tiled (Tall), tabbed, fullscreen (Full)
-myLayout = noBorders tiled ||| onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig)) tiled
+myLayout = tiled ||| onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
