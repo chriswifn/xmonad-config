@@ -4,8 +4,6 @@ module Custom.MyLayouts where
 import XMonad
 -- lets you use noBorders and smartBorders
 import XMonad.Layout.NoBorders
--- toggle between layouts 
-import XMonad.Layout.ToggleLayouts (toggleLayouts)
 -- the tabbed layout is nice for certain tasks (with web browsers)
 import XMonad.Layout.Tabbed
 -- perworkspaces lets me set certain layouts on certain workspaces
@@ -38,9 +36,7 @@ myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hintin
 -- smartBorders removes the border if there is only one screen and only
 -- one client on a workspace
 -- noBorders removes the border. 
--- I set workspace 1 to the tabbed layout because that's where my browser is going to launch
 myLayoutHook = showWName' myShowWNameTheme
-               $ toggleLayouts (noBorders Full)
                $ smartBorders
                $ myLayout
 
