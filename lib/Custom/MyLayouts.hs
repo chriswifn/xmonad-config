@@ -42,13 +42,12 @@ myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hintin
 myLayoutHook = showWName' myShowWNameTheme
                $ toggleLayouts (noBorders Full)
                $ smartBorders
-               $ onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig))
                $ myLayout
 
 -- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
 -- All the layouts that I use: tiled (Tall), tabbed, fullscreen (Full)
-myLayout = noBorders tiled ||| noBorders (tabbed shrinkText myTabConfig)
+myLayout = noBorders tiled ||| onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig)) tiled
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
