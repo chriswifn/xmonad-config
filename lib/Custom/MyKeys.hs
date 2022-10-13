@@ -20,7 +20,7 @@ myKeys = \c -> mkKeymap c $
   [ ("M-S-<Return>", spawn $ terminal c)
 
   -- spawn a run launcher (dmenu)
-  , ("M-S-p", spawn $ "dmenu_run -l 20")
+  , ("M-S-p", spawn $ "dmenu_run -l 10")
 
   -- kill a window
   , ("M-S-c", kill)
@@ -117,7 +117,7 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- DMENU SCRIPTS
-  [ ("M-p a", spawn $ "dmenu_run -l 20")
+  [ ("M-p a", spawn $ "dmenu_run -l 10")
   , ("M-p m", spawn $ "monitors")
   , ("M-p b", spawn $ "bookmarks")
   , ("M-p k", spawn $ "keyboard")
