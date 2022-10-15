@@ -1,6 +1,9 @@
 -- Base (these imports are necessary)
 import XMonad
+
+-- some imports for the ManageHook
 import XMonad.Hooks.ManageDocks (manageDocks)
+import XMonad.Hooks.InsertPosition
 
 -- Custom (my custom libraries)
 import Custom.MyVariables
@@ -30,5 +33,5 @@ defaults = def {
   -- hooks
   layoutHook = myLayoutHook,
   startupHook = myStartupHook,
-  manageHook = myManageHook <+> manageDocks
+  manageHook = insertPosition Master Newer <> myManageHook <+> manageDocks
   }
