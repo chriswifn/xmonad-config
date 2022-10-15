@@ -25,7 +25,6 @@ myManageHook = composeAll
   , className =? "dialog"         --> doFloat
   , className =? "splash"         --> doFloat
   , className =? "MATLAB R2022b - academic use" --> doFloat
-  , className =? "firefox"        --> viewShift (myWorkspaces !! 0)
   , className =? "st-256color"    --> viewShift (myWorkspaces !! 2)
   , className =? "Emacs"          --> viewShift (myWorkspaces !! 1)
   , className =? "Alacritty"      --> viewShift (myWorkspaces !! 2)
