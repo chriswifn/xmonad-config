@@ -17,11 +17,11 @@ myModMask = mod4Mask
 
 -- sometimes useful
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True 
+myFocusFollowsMouse = False
 
 -- sometimes useful
 myClickJustFocuses :: Bool
-myClickJustFocuses = True 
+myClickJustFocuses = False 
 
 -- workspace names
 myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","8:vid","9:virt"]
