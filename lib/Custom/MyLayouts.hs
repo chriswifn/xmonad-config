@@ -12,6 +12,8 @@ import XMonad.Layout.PerWorkspace
 -- is nice but is not a must have
 import XMonad.Layout.ShowWName
 
+import XMonad.Layout.ToggleLayouts
+
 -- for perworkspace to work
 import Custom.MyVariables
 
@@ -46,7 +48,7 @@ myLayoutHook = showWName' myShowWNameTheme
 -- the layout "tiled" is available on all workspaces, including workspace 1
 -- the layout "(noBorders tiled)" is available on every workspace except for workspace 1
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
-myLayout = onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled) ||| tiled ||| (noBorders (tabbed shrinkText myTabConfig))
+myLayout = toggleLayouts (noBorders Full) (onWorkspace "1:www" (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled) ||| tiled)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
