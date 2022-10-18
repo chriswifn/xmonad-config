@@ -45,6 +45,7 @@ myLayoutHook = showWName' myShowWNameTheme
 -- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
 -- Explanation for this line:
+-- the toggleLayouts is to toggle Full with a keybinding
 -- the layout "tiled" is available on all workspaces, including workspace 1
 -- the layout "(noBorders tiled)" is available on every workspace except for workspace 1
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
