@@ -116,7 +116,7 @@ myKeys = \c -> mkKeymap c $
   ]
   ++
 
-  -- DMENU SCRIPTS
+  -- DMENU SCRIPTS (keyboard and touchpad are not dmenu scripts)
   [ ("M-p a", spawn $ "dmenu_run -l 10")
   , ("M-p m", spawn $ "monitors")
   , ("M-p b", spawn $ "bookmarks")
@@ -129,6 +129,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-p e", spawn $ "emojipicker")
   , ("M-p v", spawn $ "audiodevice")
   , ("M-p c", spawn $ "audioinputdevice")
+  , ("M-p t", spawn $ "touchpad")
   ]
   ++
 
