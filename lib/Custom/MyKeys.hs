@@ -6,7 +6,7 @@ import qualified XMonad.StackSet as W
 
 -- some other necessary imports
 import System.Exit
-import XMonad.Actions.CycleWS (nextScreen, prevScreen)
+import XMonad.Actions.CycleWS (nextScreen, prevScreen, shiftNextScreen, shiftPrevScreen)
 import XMonad.Actions.CopyWindow
 import XMonad.Util.EZConfig (additionalKeysP, mkKeymap)
 import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
@@ -74,6 +74,12 @@ myKeys = \c -> mkKeymap c $
 
   -- focus on previos screen
   , ("M-,", prevScreen)
+
+  -- shift client to next screen and focus on it
+  , ("M-S-.", shiftNextScreen >> nextScreen)
+
+  -- shift client to previous screen and focus on it
+  , ("M-S-,", shiftPrevScreen >> prevScreen)
 
   -- increment the amount of master nodes
   , ("M-d", sendMessage (IncMasterN 1))
