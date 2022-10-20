@@ -49,7 +49,10 @@ myLayoutHook = showWName' myShowWNameTheme
 -- the layout "tiled" is available on all workspaces, including workspace 1
 -- the layout "(noBorders tiled)" is available on every workspace except for workspace 1
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
-myLayout = toggleLayouts (noBorders Full) $ onWorkspaces ["1:www", "9:null"] (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled) ||| tiled
+myLayout = toggleLayouts (noBorders Full)
+         $ onWorkspaces ["1:www", "9:null"]
+           (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled)
+           ||| tiled
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
