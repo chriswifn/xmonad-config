@@ -31,6 +31,7 @@ myManageHook = composeAll
   , className =? "Zathura"        --> viewShift (myWorkspaces !! 5)
   , className =? "mpv"            --> viewShift (myWorkspaces !! 7)
   , className =? "mus"            --> viewShift (myWorkspaces !! 6)
+  , className =? "Picard"         --> viewShift (myWorkspaces !! 6)
   , className =? "Virt-manager"   --> viewShift (myWorkspaces !! 8)
   , className =? "file"           --> viewShift (myWorkspaces !! 3)
   , className =? "Pcmanfm"        --> viewShift (myWorkspaces !! 3)
