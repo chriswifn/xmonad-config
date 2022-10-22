@@ -28,7 +28,7 @@ myShowWNameTheme = def
 myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
                   , activeColor = "#323232"
                   , inactiveColor = "#1e1e1e"
-                  , activeBorderColor = "#ccdfe7"
+                  , activeBorderColor = "#323232"
                   , inactiveBorderColor = "#1e1e1e"
                   , activeTextColor = "#ccdfe7"
                   , inactiveTextColor = "#ccdfe7"
@@ -51,8 +51,7 @@ myLayoutHook = showWName' myShowWNameTheme
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
 myLayout = toggleLayouts (noBorders Full)
          $ onWorkspaces ["1:www", "9:null"]
-           (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled)
-           ||| tiled
+           (noBorders (tabbed shrinkText myTabConfig)) (noBorders tiled) ||| tiled
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
