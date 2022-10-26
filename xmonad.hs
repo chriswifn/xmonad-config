@@ -4,6 +4,7 @@ import XMonad
 -- some imports for the ManageHook
 import XMonad.Hooks.ManageDocks (manageDocks)
 import XMonad.Hooks.InsertPosition
+import XMonad.Hooks.WindowSwallowing
 
 -- Custom (my custom libraries)
 import Custom.MyVariables
@@ -32,6 +33,7 @@ defaults = def {
 
   -- hooks
   layoutHook = myLayoutHook,
+  handleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "st-256color") (return True),
   startupHook = myStartupHook,
   manageHook = insertPosition Master Newer <> myManageHook <+> manageDocks
   }
