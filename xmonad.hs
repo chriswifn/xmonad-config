@@ -1,17 +1,13 @@
 -- Base (these imports are necessary)
 import XMonad
 
--- some imports for the ManageHook
-import XMonad.Hooks.ManageDocks (manageDocks)
-import XMonad.Hooks.InsertPosition
-import XMonad.Hooks.WindowSwallowing
-
 -- Custom (my custom libraries)
 import Custom.MyVariables
 import Custom.MyAutostart
 import Custom.MyLayouts
 import Custom.MyWindowRules
 import Custom.MyKeys
+import Custom.MySwallow
 
 -- the main function: this is where the magic happens
 main :: IO ()
@@ -33,7 +29,7 @@ defaults = def {
 
   -- hooks
   layoutHook = myLayoutHook,
-  handleEventHook = swallowEventHook (className =? "Alacritty" <||> className =? "st-256color") (return True),
+  handleEventHook = myHandleEventHook, 
   startupHook = myStartupHook,
-  manageHook = insertPosition Master Newer <> myManageHook <+> manageDocks
+  manageHook = myManageHook
   }

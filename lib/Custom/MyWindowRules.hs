@@ -10,12 +10,13 @@ import qualified XMonad.StackSet as W
 
 -- some floating functions
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
+import XMonad.Hooks.InsertPosition
 
 -- I need my variables to shift clients to specific workspaces
 import Custom.MyVariables
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-myManageHook = composeAll
+myManageHook = insertPosition Master Newer <> composeAll
   [ className =? "MPlayer"        --> doFloat
   , className =? "Gimp"           --> doFloat
   , resource  =? "desktop_window" --> doIgnore
