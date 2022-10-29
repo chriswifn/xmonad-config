@@ -19,7 +19,7 @@ import Custom.MyVariables
 
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
-  { swn_font              = "xft:Monoid:size=20"
+  { swn_font              = "xft:Monoid:size=11"
   , swn_fade              = 1.0
   , swn_bgcolor           = "#323232"
   , swn_color             = "#ffffff"
