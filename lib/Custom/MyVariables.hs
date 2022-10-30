@@ -28,11 +28,11 @@ myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","
 
 -- border widht: a nice big border
 myBorderWidth :: Dimension 
-myBorderWidth = 5
+myBorderWidth = 1
 
 -- black is my primary background color, inactive border should blend into the background
 myNormalBorderColor :: String
-myNormalBorderColor = "#000000"
+myNormalBorderColor = "#323232"
 
 -- a nice color that fints the theme
 myFocusedBorderColor :: String
