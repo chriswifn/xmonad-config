@@ -126,6 +126,7 @@ myKeys = \c -> mkKeymap c $
   [ ("M-o p", spawn $ "open_with_dmenu pdf")
   , ("M-o i", spawn $ "open_with_dmenu image")
   , ("M-o o", spawn $ "open_with_dmenu doc")
+  , ("M-o v", spawn $ "open_with_dmenu video")
   ]
   ++
 

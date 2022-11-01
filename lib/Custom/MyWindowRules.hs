@@ -25,6 +25,7 @@ myManageHook = insertPosition Master Newer <> composeAll
   , className =? "error"          --> doFloat
   , className =? "dialog"         --> doFloat
   , className =? "splash"         --> doFloat
+  , className =? "firefox"        --> viewShift (myWorkspaces !! 0)
   , className =? "MATLAB R2022b - academic use" --> viewShift (myWorkspaces !! 8)
   , className =? "st-256color"    --> viewShift (myWorkspaces !! 2)
   , className =? "Emacs"          --> viewShift (myWorkspaces !! 1)
