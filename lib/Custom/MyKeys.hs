@@ -122,6 +122,13 @@ myKeys = \c -> mkKeymap c $
   ]
   ++
 
+  -- OPEN WITH DMENU
+  [ ("M-o p", spawn $ "open_with_dmenu pdf")
+  , ("M-o i", spawn $ "open_with_dmenu image")
+  , ("M-o o", spawn $ "open_with_dmenu doc")
+  ]
+  ++
+
   -- DMENU SCRIPTS (keyboard and touchpad are not dmenu scripts)
   [ ("M-p a", spawn $ "dmenu_run -l 10")
   , ("M-p m", spawn $ "monitors")
