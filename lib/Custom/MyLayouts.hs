@@ -51,7 +51,7 @@ myLayoutHook = showWName' myShowWNameTheme
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
 myLayout = toggleLayouts (noBorders Full)
          $ onWorkspaces ["1:www", "9:null"]
-           (noBorders (tabbed shrinkText myTabConfig)) tiled
+           (tabbed shrinkText myTabConfig) tiled
            ||| (tabbed shrinkText myTabConfig)
   where
      -- default tiling algorithm partitions the screen into two panes
