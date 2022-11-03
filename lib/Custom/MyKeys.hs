@@ -97,7 +97,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-u", sendMessage (IncMasterN (-1)))
 
   -- show all programs in grid
-  , ("M-S-g", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+  , ("M-b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
 
   -- recompile and restart XMonad
   , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")
