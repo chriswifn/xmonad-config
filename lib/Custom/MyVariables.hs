@@ -45,7 +45,7 @@ myFocusedBorderColor :: String
 myFocusedBorderColor = "#f78fe7"
 
 myFont :: String
-myFont = "xft:Monoid:regular:size=9:antialias=true:hinting=true"
+myFont = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
 
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName
@@ -53,7 +53,7 @@ myColorizer = colorRangeFromClassName
                 (0x32,0x32,0x32) -- highest inactive bg
                 (0xf7,0x8f,0xe7) -- active bg
                 (0xff,0xff,0xff) -- inactive fg
-                (0x32,0x32,0x32) -- active fg
+                (0x00,0x00,0x00) -- active fg
 
 -- gridSelect menu layout
 mygridConfig :: p -> GSConfig Window
