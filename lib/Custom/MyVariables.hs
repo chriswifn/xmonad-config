@@ -44,6 +44,9 @@ myNormalBorderColor = "#323232"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#f78fe7"
 
+myFont :: String
+myFont = "xft:Monoid:regular:size=9:antialias=true:hinting=true"
+
 myColorizer :: Window -> Bool -> X (String, String)
 myColorizer = colorRangeFromClassName
                 (0x1e,0x1e,0x1e) -- lowest inactive bg
@@ -55,23 +58,23 @@ myColorizer = colorRangeFromClassName
 -- gridSelect menu layout
 mygridConfig :: p -> GSConfig Window
 mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
-    { gs_cellheight   = 40
-    , gs_cellwidth    = 200
+    { gs_cellheight   = 30
+    , gs_cellwidth    = 1000
     , gs_cellpadding  = 6
     , gs_originFractX = 0.5
     , gs_originFractY = 0.5
-    , gs_font         = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
+    , gs_font         = myFont 
     }
 
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
-  { swn_font              = "xft:Monoid:size=11"
+  { swn_font              = myFont 
   , swn_fade              = 1.0
   , swn_bgcolor           = "#323232"
   , swn_color             = "#ffffff"
   }
 
-myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
+myTabConfig = def { fontName = myFont 
                   , activeColor = "#323232"
                   , inactiveColor = "#1e1e1e"
                   , activeBorderColor = "#323232"
