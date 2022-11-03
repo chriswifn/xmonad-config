@@ -5,12 +5,21 @@ import XMonad
 import qualified XMonad.StackSet as W
 
 -- some other necessary imports
+-- exit
 import System.Exit
+-- cycle and move betweens monitors
 import XMonad.Actions.CycleWS (nextScreen, prevScreen, shiftNextScreen, shiftPrevScreen)
+-- copy
 import XMonad.Actions.CopyWindow
+-- eazy keybindings
 import XMonad.Util.EZConfig (additionalKeysP, mkKeymap)
+-- toggle fullscreen
 import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
+-- switch between applications in grid select
+import XMonad.Actions.GridSelect
+-- for some themes
 import Custom.MyVariables
+
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -86,6 +95,9 @@ myKeys = \c -> mkKeymap c $
 
   -- decrement the amount of master nodes
   , ("M-u", sendMessage (IncMasterN (-1)))
+
+  -- show all programs in grid
+  , ("M-S-g", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
 
   -- recompile and restart XMonad
   , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")

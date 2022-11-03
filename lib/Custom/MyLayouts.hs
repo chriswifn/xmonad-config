@@ -12,33 +12,16 @@ import XMonad.Layout.PerWorkspace
 -- is nice but is not a must have
 import XMonad.Layout.ShowWName
 
+-- toggle layouts
 import XMonad.Layout.ToggleLayouts
 
 -- for perworkspace to work
 import Custom.MyVariables
 
-myShowWNameTheme :: SWNConfig
-myShowWNameTheme = def
-  { swn_font              = "xft:Monoid:size=11"
-  , swn_fade              = 1.0
-  , swn_bgcolor           = "#323232"
-  , swn_color             = "#ffffff"
-  }
-
-myTabConfig = def { fontName = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
-                  , activeColor = "#323232"
-                  , inactiveColor = "#1e1e1e"
-                  , activeBorderColor = "#323232"
-                  , inactiveBorderColor = "#1e1e1e"
-                  , activeTextColor = "#ccdfe7"
-                  , inactiveTextColor = "#ccdfe7"
-                  }
-                  
-
 -- smartBorders removes the border if there is only one screen and only
 -- one client on a workspace
 -- noBorders removes the border. 
-myLayoutHook = showWName' myShowWNameTheme
+myLayoutHook = showWName' Custom.MyVariables.myShowWNameTheme
                $ lessBorders (Combine Difference Screen OnlyScreenFloat)
                $ myLayout
 
@@ -51,8 +34,8 @@ myLayoutHook = showWName' myShowWNameTheme
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
 myLayout = toggleLayouts (noBorders Full)
          $ onWorkspaces ["1:www", "9:null"]
-           (tabbed shrinkText myTabConfig) tiled
-           ||| (tabbed shrinkText myTabConfig)
+           (tabbed shrinkText Custom.MyVariables.myTabConfig) tiled
+           ||| (tabbed shrinkText Custom.MyVariables.myTabConfig)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
