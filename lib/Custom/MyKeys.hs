@@ -102,7 +102,7 @@ myKeys = \c -> mkKeymap c $
 
   , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
 
-  , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.view)
+  , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
 
   -- recompile and restart XMonad
   , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")
