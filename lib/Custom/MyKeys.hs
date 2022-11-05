@@ -97,16 +97,6 @@ myKeys = \c -> mkKeymap c $
   -- decrement the amount of master nodes
   , ("M-u", sendMessage (IncMasterN (-1)))
 
-  -- Workspace stuff 
-  , ("M-b b", treeselectWorkspace myTSConfig myWorkspaces W.view)
-
-  , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
-
-  , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
-
-  -- show all programs in grid
-  , ("M-b f", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
-
   -- recompile and restart XMonad
   , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")
 
@@ -114,8 +104,21 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-q", io (exitWith ExitSuccess))]
   ++
 
-  -- TREESELECT
+  -- TREESELECT AND GRID (for workspaces and a custom menu)
+  -- custom menu
   [ ("M-;", Custom.MyVariables.treeselectAction myTSConfig)
+
+  -- shift client to selected workspace and shift focus to that client
+  , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
+
+  -- go to selected workspace and switch focus
+  , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
+
+  -- show all programs in grid and switches focus to the selected one
+  , ("M-b b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+
+  -- shows all programs in grid and kills the selected one 
+  , ("M-b c", withSelectedWindow killWindow (mygridConfig Custom.MyVariables.myColorizer))
   ]
   ++
 
