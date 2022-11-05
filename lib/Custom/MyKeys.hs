@@ -114,15 +114,10 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-q", io (exitWith ExitSuccess))]
   ++
 
-  -- WORKSPACE STUFF
-  -- this includes:
-  -- + Viewing workspaces with [Mod + (1..9)] <-- done with greedyView (view is also an option)
-  -- + Shifting clients to other workspaces with [Mod + Shift + (1..9)]
-  -- + Tag like functionality: tag clients to a specific workspace with [Mod + Shift + Control + (1..9)]
-  -- [ ("M-" ++ m ++ k, windows $ f i)
-  --       | (i, k) <- zip (toWorkspaces myWorkspaces) (map show [1 :: Int ..])
-  --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  -- ++
+  -- TREESELECT
+  [ ("M-;", Custom.MyVariables.treeselectAction myTSConfig)
+  ]
+  ++
 
   -- EMACS PROGRAMS
   [ ("M-e e", spawn $ myEmacs)
@@ -173,15 +168,3 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-f", spawn $ "pcmanfm")
   , ("M-v", spawn $ "virt-manager")
   , ("M-S-C-s", spawn $ "slock")]
-  ++
-
-  -- SCRIPTS TO CONTROL AUDIO (both input and output), BRIGHTNESS AND A NIGHT MODE
-  [ ("M-<F1>", spawn $ "volume mute")
-  , ("M-<F2>", spawn $ "volume down")
-  , ("M-<F3>", spawn $ "volume up")
-  , ("M-<F4>", spawn $ "microphone mute")
-  , ("M-<F5>", spawn $ "microphone down")
-  , ("M-<F6>", spawn $ "microphone up")
-  , ("M-<F7>", spawn $ "brightness down")
-  , ("M-<F8>", spawn $ "brightness up")
-  , ("M-<F9>", spawn $ "gamma")]

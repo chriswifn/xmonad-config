@@ -30,28 +30,9 @@ myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
 myClickJustFocuses = False 
 
--- workspace names
--- myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","8:vid","9:null"]
--- myWorkspaces = [ Node "browser"
---                  [ Node "firefox" []]
---                , Node "programming"
---                  [ Node "emacs" []
---                  , Node "terminal" []
---                  , Node "dev" []
---                  , Node "matlab" []
---                  , Node "doc" []]
---                , Node "terminal" 
---                  [ Node "st" []
---                  , Node "tmux-session" []
---                  , Node "file-terminal" []]
---                , Node "home"
---                  [ Node "file-graphical" []
---                  , Node "video" []
---                  , Node "music" []
---                  , Node "virtual" []
---                  , Node "office" []]
---                ]
 
+-- workspace names
+myWorkspaces :: Forest String
 myWorkspaces = [ Node "home"
                  [ Node "browser"
                    [ Node "firefox" []
@@ -73,7 +54,6 @@ myWorkspaces = [ Node "home"
                  , Node "virtual" []
                  , Node "office" []
                  ]
-
                , Node "work-programming"
                  [ Node "browser" []
                  , Node "programming"
@@ -92,6 +72,22 @@ myWorkspaces = [ Node "home"
                  , Node "terminal" []
                  ]
                ]
+
+treeselectAction :: TS.TSConfig (X ()) -> X ()
+treeselectAction a = TS.treeselectAction a
+  [ Node (TS.TSNode "volume" "change the volume" (spawn "st -e pulsemixer")) []
+  , Node (TS.TSNode "brightness" "change the brightness" (return ())) 
+    [ Node (TS.TSNode "bright" "set brightness to 100%" (spawn "brightnessctl set 100%")) []
+    , Node (TS.TSNode "medium" "set brightness to 50%" (spawn "brightnessctl set 50%")) []
+    , Node (TS.TSNode "low" "set brightness to 10%" (spawn "brightnessctl set 10%")) []
+    ]
+  , Node (TS.TSNode "blue-light-filter" "toggle bluelight filter" (spawn "gamma")) []
+  , Node (TS.TSNode "logout" "menu for logout options" (return ())) 
+    [ Node (TS.TSNode "shutdown" "shutdown the system" (spawn "systemctl poweroff")) []
+    , Node (TS.TSNode "reboot" "reboot the system" (spawn "systemctl reboot")) []
+    , Node (TS.TSNode "lock" "lock the system with slock" (spawn "slock")) []
+    ]
+  ]
 
 -- border widht: a nice big border
 myBorderWidth :: Dimension 
