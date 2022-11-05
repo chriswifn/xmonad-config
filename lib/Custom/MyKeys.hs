@@ -136,7 +136,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-t h", spawn $ myTerminal ++ ("-e htop"))
   , ("M-t a", spawn $ myTerminal ++ ("-c 'mus' -e cmus"))
   , ("M-t r", spawn $ myTerminal ++ ("-c 'file' -e ranger"))
-  , ("M-t p", spawn $ myTerminal ++ ("-e pulsemixer"))
+  , ("M-t p", spawn $ myTerminal ++ ("-c 'pulse' -e pulsemixer"))
   ]
   ++
 

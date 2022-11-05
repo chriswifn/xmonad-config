@@ -75,7 +75,7 @@ myWorkspaces = [ Node "home"
 
 treeselectAction :: TS.TSConfig (X ()) -> X ()
 treeselectAction a = TS.treeselectAction a
-  [ Node (TS.TSNode "volume" "change the volume" (spawn "st -e pulsemixer")) []
+  [ Node (TS.TSNode "volume" "change the volume" (spawn "st -c 'pulse' -e pulsemixer")) []
   , Node (TS.TSNode "brightness" "change the brightness" (return ())) 
     [ Node (TS.TSNode "bright" "set brightness to 100%" (spawn "brightnessctl set 100%")) []
     , Node (TS.TSNode "medium" "set brightness to 50%" (spawn "brightnessctl set 50%")) []
