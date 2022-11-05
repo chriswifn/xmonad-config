@@ -16,8 +16,6 @@ import XMonad.Hooks.InsertPosition
 -- I need my variables to shift clients to specific workspaces
 import Custom.MyVariables
 
-myWorkspacesForWindowRules = toWorkspaces myWorkspaces
-
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = insertPosition Master Newer <> composeAll
   [ className =? "MPlayer"        --> doFloat
@@ -28,11 +26,4 @@ myManageHook = insertPosition Master Newer <> composeAll
   , className =? "error"          --> doFloat
   , className =? "dialog"         --> doFloat
   , className =? "splash"         --> doFloat
-  , className =? "MATLAB R2022b - academic use" --> viewShift (toWorkspaces myWorkspaces !! 8)
-  , className =? "mpv"            --> viewShift (myWorkspacesForWindowRules !! 11)
-  , className =? "mus"            --> viewShift (myWorkspacesForWindowRules !! 12)
-  , className =? "Picard"         --> viewShift (myWorkspacesForWindowRules !! 12)
-  , className =? "Virt-manager"   --> viewShift (myWorkspacesForWindowRules !! 13)
-  , className =? "file"           --> viewShift (myWorkspacesForWindowRules !! 5)
-  , className =? "Pcmanfm"        --> viewShift (myWorkspacesForWindowRules !! 10)]
-  where viewShift = doF . liftM2 (.) W.view W.shift
+  , className =? "MATLAB R2022b - academic use" --> doFloat]

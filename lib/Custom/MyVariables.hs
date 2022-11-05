@@ -30,21 +30,65 @@ myClickJustFocuses = False
 
 -- workspace names
 -- myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","8:vid","9:null"]
-myWorkspaces = [ Node "browser"
-                 [ Node "firefox" []]
-               , Node "programming"
-                 [ Node "emacs" []
-                 , Node "terminal" []
-                 , Node "file-terminal" []
-                 , Node "dev" []
-                 , Node "matlab" []
-                 , Node "doc" []]
-               , Node "home"
-                 [ Node "file-graphical" []
-                 , Node "video" []
-                 , Node "music" []
+-- myWorkspaces = [ Node "browser"
+--                  [ Node "firefox" []]
+--                , Node "programming"
+--                  [ Node "emacs" []
+--                  , Node "terminal" []
+--                  , Node "dev" []
+--                  , Node "matlab" []
+--                  , Node "doc" []]
+--                , Node "terminal" 
+--                  [ Node "st" []
+--                  , Node "tmux-session" []
+--                  , Node "file-terminal" []]
+--                , Node "home"
+--                  [ Node "file-graphical" []
+--                  , Node "video" []
+--                  , Node "music" []
+--                  , Node "virtual" []
+--                  , Node "office" []]
+--                ]
+
+myWorkspaces = [ Node "home"
+                 [ Node "browser"
+                   [ Node "firefox" []
+                   ]
+                 , Node "programming"
+                   [ Node "emacs" []
+                   , Node "doc" []
+                   ]
+                 , Node "terminal" 
+                   [ Node "dev" []
+                   , Node "file-terminal" []
+                   ]
+                 , Node "file-management" []
+                 , Node "entertainment"
+                   [ Node "music" []
+                   , Node "video" []
+                   , Node "image" []
+                   ]
                  , Node "virtual" []
-                 , Node "office" []]
+                 , Node "office" []
+                 ]
+
+               , Node "work-programming"
+                 [ Node "browser" []
+                 , Node "programming"
+                   [ Node "emacs" []
+                   , Node "doc" []
+                   , Node "matlab" []
+                   ]
+                 , Node "terminal"
+                   [ Node "tmux-session" []
+                   , Node "trash-term" []
+                   ]
+                 ]
+               , Node "work-sysad"
+                 [ Node "browser" []
+                 , Node "emacs" []
+                 , Node "terminal" []
+                 ]
                ]
 
 -- border widht: a nice big border
