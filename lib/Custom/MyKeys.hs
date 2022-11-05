@@ -19,7 +19,8 @@ import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
 import XMonad.Actions.GridSelect
 -- for some themes
 import Custom.MyVariables
-
+-- Treeselect
+import XMonad.Actions.TreeSelect
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -96,8 +97,12 @@ myKeys = \c -> mkKeymap c $
   -- decrement the amount of master nodes
   , ("M-u", sendMessage (IncMasterN (-1)))
 
-  -- show all programs in grid
-  , ("M-b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+  -- Workspace stuff 
+  , ("M-b b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+
+  , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
+
+  , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.view)
 
   -- recompile and restart XMonad
   , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")
@@ -111,10 +116,10 @@ myKeys = \c -> mkKeymap c $
   -- + Viewing workspaces with [Mod + (1..9)] <-- done with greedyView (view is also an option)
   -- + Shifting clients to other workspaces with [Mod + Shift + (1..9)]
   -- + Tag like functionality: tag clients to a specific workspace with [Mod + Shift + Control + (1..9)]
-  [ ("M-" ++ m ++ k, windows $ f i)
-        | (i, k) <- zip (myWorkspaces) (map show [1 :: Int ..])
-        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  ++
+  -- [ ("M-" ++ m ++ k, windows $ f i)
+  --       | (i, k) <- zip (toWorkspaces myWorkspaces) (map show [1 :: Int ..])
+  --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
+  -- ++
 
   -- EMACS PROGRAMS
   [ ("M-e e", spawn $ myEmacs)

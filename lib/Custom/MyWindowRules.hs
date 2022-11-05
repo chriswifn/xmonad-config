@@ -7,6 +7,7 @@ import XMonad
 import Data.Monoid
 import Control.Monad (liftM2)
 import qualified XMonad.StackSet as W
+import XMonad.Actions.TreeSelect
 
 -- some floating functions
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
@@ -14,6 +15,8 @@ import XMonad.Hooks.InsertPosition
 
 -- I need my variables to shift clients to specific workspaces
 import Custom.MyVariables
+
+myWorkspacesForWindowRules = toWorkspaces myWorkspaces
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = insertPosition Master Newer <> composeAll
@@ -25,18 +28,11 @@ myManageHook = insertPosition Master Newer <> composeAll
   , className =? "error"          --> doFloat
   , className =? "dialog"         --> doFloat
   , className =? "splash"         --> doFloat
-  , className =? "firefox"        --> viewShift (myWorkspaces !! 0)
-  , className =? "MATLAB R2022b - academic use" --> viewShift (myWorkspaces !! 8)
-  , className =? "st-256color"    --> viewShift (myWorkspaces !! 2)
-  , className =? "Emacs"          --> viewShift (myWorkspaces !! 1)
-  , className =? "Alacritty"      --> viewShift (myWorkspaces !! 2)
-  , className =? "Zathura"        --> viewShift (myWorkspaces !! 5)
-  , className =? "mpv"            --> viewShift (myWorkspaces !! 7)
-  , className =? "mus"            --> viewShift (myWorkspaces !! 6)
-  , className =? "Picard"         --> viewShift (myWorkspaces !! 6)
-  , className =? "Virt-manager"   --> viewShift (myWorkspaces !! 8)
-  , className =? "file"           --> viewShift (myWorkspaces !! 3)
-  , className =? "Pcmanfm"        --> viewShift (myWorkspaces !! 3)
-  , className =? "nvim"           --> viewShift (myWorkspaces !! 4)
-  , className =? "dev"            --> viewShift (myWorkspaces !! 4)]
+  , className =? "MATLAB R2022b - academic use" --> viewShift (toWorkspaces myWorkspaces !! 8)
+  , className =? "mpv"            --> viewShift (myWorkspacesForWindowRules !! 6)
+  , className =? "mus"            --> viewShift (myWorkspacesForWindowRules !! 11)
+  , className =? "Picard"         --> viewShift (myWorkspacesForWindowRules !! 11)
+  , className =? "Virt-manager"   --> viewShift (myWorkspacesForWindowRules !! 12)
+  , className =? "file"           --> viewShift (myWorkspacesForWindowRules !! 9)
+  , className =? "Pcmanfm"        --> viewShift (myWorkspacesForWindowRules !! 9)]
   where viewShift = doF . liftM2 (.) W.view W.shift

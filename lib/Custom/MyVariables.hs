@@ -4,10 +4,11 @@ module Custom.MyVariables where
 import XMonad
 -- Grid Select to switch betweens applications
 import XMonad.Actions.GridSelect
--- Show workspace name
-import XMonad.Layout.ShowWName
 -- tabbed layout
 import XMonad.Layout.Tabbed
+-- Treeselect
+import Data.Tree
+import qualified XMonad.Actions.TreeSelect as TS
 
 -- st is objectively the best terminal
 myTerminal :: String
@@ -30,7 +31,21 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False 
 
 -- workspace names
-myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","8:vid","9:null"]
+-- myWorkspaces    = ["1:www","2:emacs","3:term","4:file","5:dev","6:doc","7:mus","8:vid","9:null"]
+myWorkspaces = [ Node "browser"
+                 [ Node "firefox" []]
+               , Node "programming"
+                 [ Node "emacs" []
+                 , Node "terminal" []
+                 , Node "dev" []
+                 , Node "matlab" []
+                 , Node "doc" []]
+               , Node "home"
+                 [ Node "file" []
+                 , Node "video" []
+                 , Node "music" []
+                 , Node "virtual" []]
+               ]
 
 -- border widht: a nice big border
 myBorderWidth :: Dimension 
@@ -66,14 +81,6 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_font         = myFont 
     }
 
-myShowWNameTheme :: SWNConfig
-myShowWNameTheme = def
-  { swn_font              = myFont 
-  , swn_fade              = 1.0
-  , swn_bgcolor           = "#323232"
-  , swn_color             = "#ffffff"
-  }
-
 myTabConfig = def { fontName = myFont 
                   , activeColor = "#323232"
                   , inactiveColor = "#1e1e1e"
@@ -82,5 +89,20 @@ myTabConfig = def { fontName = myFont
                   , activeTextColor = "#ccdfe7"
                   , inactiveTextColor = "#ccdfe7"
                   }
+
+myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
+                         , TS.ts_background   = 0x000000
+                         , TS.ts_font         = myFont 
+                         , TS.ts_node         = (0xccdfe7, 0x323232)
+                         , TS.ts_nodealt      = (0xccdfe7, 0x1e1e1e)
+                         , TS.ts_highlight    = (0xffffff, 0xf78fe7)
+                         , TS.ts_extra        = 0xffffff
+                         , TS.ts_node_width   = 200 
+                         , TS.ts_node_height  = 30
+                         , TS.ts_originX      = 0
+                         , TS.ts_originY      = 0
+                         , TS.ts_indent       = 80
+                         , TS.ts_navigate     = TS.defaultNavigation
+                         }
                   
 
