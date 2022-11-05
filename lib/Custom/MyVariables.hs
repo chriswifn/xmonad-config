@@ -2,8 +2,6 @@ module Custom.MyVariables where
 
 -- main library
 import XMonad
--- Grid Select to switch betweens applications
-import XMonad.Actions.GridSelect
 -- tabbed layout
 import XMonad.Layout.Tabbed
 -- Treeselect
@@ -37,14 +35,16 @@ myWorkspaces = [ Node "browser"
                , Node "programming"
                  [ Node "emacs" []
                  , Node "terminal" []
+                 , Node "file-terminal" []
                  , Node "dev" []
                  , Node "matlab" []
                  , Node "doc" []]
                , Node "home"
-                 [ Node "file" []
+                 [ Node "file-graphical" []
                  , Node "video" []
                  , Node "music" []
-                 , Node "virtual" []]
+                 , Node "virtual" []
+                 , Node "office" []]
                ]
 
 -- border widht: a nice big border
@@ -61,25 +61,6 @@ myFocusedBorderColor = "#f78fe7"
 
 myFont :: String
 myFont = "xft:Monoid:regular:size=10:antialias=true:hinting=true"
-
-myColorizer :: Window -> Bool -> X (String, String)
-myColorizer = colorRangeFromClassName
-                (0x1e,0x1e,0x1e) -- lowest inactive bg
-                (0x32,0x32,0x32) -- highest inactive bg
-                (0xf7,0x8f,0xe7) -- active bg
-                (0xff,0xff,0xff) -- inactive fg
-                (0x00,0x00,0x00) -- active fg
-
--- gridSelect menu layout
-mygridConfig :: p -> GSConfig Window
-mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
-    { gs_cellheight   = 30
-    , gs_cellwidth    = 1000
-    , gs_cellpadding  = 6
-    , gs_originFractX = 0.5
-    , gs_originFractY = 0.5
-    , gs_font         = myFont 
-    }
 
 myTabConfig = def { fontName = myFont 
                   , activeColor = "#323232"

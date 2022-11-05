@@ -15,8 +15,6 @@ import XMonad.Actions.CopyWindow
 import XMonad.Util.EZConfig (additionalKeysP, mkKeymap)
 -- toggle fullscreen
 import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
--- switch between applications in grid select
-import XMonad.Actions.GridSelect
 -- for some themes
 import Custom.MyVariables
 -- Treeselect
@@ -98,7 +96,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-u", sendMessage (IncMasterN (-1)))
 
   -- Workspace stuff 
-  , ("M-b b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+  , ("M-b b", treeselectWorkspace myTSConfig myWorkspaces W.view)
 
   , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
 
