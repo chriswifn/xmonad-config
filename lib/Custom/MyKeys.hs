@@ -19,6 +19,8 @@ import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
 import Custom.MyVariables
 -- Treeselect
 import XMonad.Actions.TreeSelect
+-- switch between applications in grid select
+import XMonad.Actions.GridSelect
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -101,6 +103,9 @@ myKeys = \c -> mkKeymap c $
   , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
 
   , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
+
+  -- show all programs in grid
+  , ("M-b f", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
 
   -- recompile and restart XMonad
   , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")

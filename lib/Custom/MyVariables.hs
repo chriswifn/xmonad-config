@@ -7,6 +7,8 @@ import XMonad.Layout.Tabbed
 -- Treeselect
 import Data.Tree
 import qualified XMonad.Actions.TreeSelect as TS
+-- Grid Select to switch betweens applications
+import XMonad.Actions.GridSelect
 
 -- st is objectively the best terminal
 myTerminal :: String
@@ -130,4 +132,22 @@ myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
                          , TS.ts_navigate     = TS.defaultNavigation
                          }
                   
+myColorizer :: Window -> Bool -> X (String, String)
+myColorizer = colorRangeFromClassName
+                (0x1e,0x1e,0x1e) -- lowest inactive bg
+                (0x32,0x32,0x32) -- highest inactive bg
+                (0xf7,0x8f,0xe7) -- active bg
+                (0xff,0xff,0xff) -- inactive fg
+                (0x00,0x00,0x00) -- active fg
+
+-- gridSelect menu layout
+mygridConfig :: p -> GSConfig Window
+mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
+    { gs_cellheight   = 30
+    , gs_cellwidth    = 1000
+    , gs_cellpadding  = 6
+    , gs_originFractX = 0.5
+    , gs_originFractY = 0.5
+    , gs_font         = myFont 
+    }
 
