@@ -61,6 +61,7 @@ myWorkspaces = [ Node "home"
                    , Node "doc" []
                    , Node "matlab" []
                    ]
+                 , Node "reference" []
                  , Node "terminal"
                    [ Node "tmux-session" []
                    , Node "trash-term" []
