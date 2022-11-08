@@ -10,6 +10,7 @@ import Custom.MyKeys
 import Custom.MySwallow
 
 import XMonad.Actions.TreeSelect
+import XMonad.Hooks.WorkspaceHistory
 
 -- the main function: this is where the magic happens
 main :: IO ()
@@ -33,5 +34,6 @@ defaults = def {
   layoutHook = myLayoutHook,
   handleEventHook = myHandleEventHook, 
   startupHook = myStartupHook,
-  manageHook = myManageHook
+  manageHook = myManageHook,
+  logHook = workspaceHistoryHook
   }
