@@ -24,7 +24,7 @@ myLayoutHook = lessBorders (Combine Difference Screen OnlyScreenFloat)
 -- the layout "tiled" is available on all workspaces, including workspace 1
 -- the layout "(noBorders tiled)" is available on every workspace except for workspace 1
 -- where it is replaced by the layout "(noBorders (tabbed shrinkText myTabConfig)"
-myLayout = toggleLayouts (noBorders Full) (tiled ||| (tabbed shrinkText Custom.MyVariables.myTabConfig))
+myLayout = toggleLayouts (noBorders Full) ((tabbed shrinkText Custom.MyVariables.myTabConfig) ||| tiled)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
