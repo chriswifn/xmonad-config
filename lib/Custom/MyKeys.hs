@@ -30,7 +30,7 @@ myKeys = \c -> mkKeymap c $
   [ ("M-S-<Return>", spawn $ terminal c)
 
   -- spawn a run launcher (dmenu)
-  , ("M-S-p", spawn $ "dmenu_run -l 10")
+  , ("M-S-p", spawn $ "dmenu_run -l 10 -p 'Application: '")
 
   -- kill a window
   , ("M-S-c", kill)
@@ -133,7 +133,7 @@ myKeys = \c -> mkKeymap c $
   -- TERMINAL PROGRAMS
   [ ("M-t t", spawn $ myTerminal ++ ("-c 'dev' -e tmux"))
   , ("M-t n", spawn $ myTerminal ++ ("-c 'nvim' -e nvim"))
-  , ("M-t h", spawn $ myTerminal ++ ("-e htop"))
+  , ("M-t h", spawn $ myTerminal ++ ("-c 'htop' -e htop"))
   , ("M-t a", spawn $ myTerminal ++ ("-c 'mus' -e cmus"))
   , ("M-t r", spawn $ myTerminal ++ ("-c 'file' -e ranger"))
   , ("M-t p", spawn $ myTerminal ++ ("-c 'pulse' -e pulsemixer"))
@@ -149,14 +149,14 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- DMENU SCRIPTS (keyboard and touchpad are not dmenu scripts)
-  [ ("M-p a", spawn $ "dmenu_run -l 10")
+  [ ("M-p a", spawn $ "dmenu_run -l 10 -p 'Application: '")
   , ("M-p m", spawn $ "monitors")
   , ("M-p b", spawn $ "bookmarks")
   , ("M-p k", spawn $ "keyboard")
   , ("M-p s", spawn $ "maimmenu")
   , ("M-p i", spawn $ "network")
   , ("M-p l", spawn $ "logoutmenu")
-  , ("M-p p", spawn $ "passmenu -l 20 -p 'Choose password: '")
+  , ("M-p p", spawn $ "passmenu -l 20 -p 'Password: '")
   , ("M-p w", spawn $ "connectwifi")
   , ("M-p e", spawn $ "emojipicker")
   , ("M-p v", spawn $ "audiodevice")
