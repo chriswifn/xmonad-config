@@ -26,6 +26,4 @@ myManageHook = insertPosition Master Newer <> composeAll
   , className =? "error"          --> doFloat
   , className =? "dialog"         --> doFloat
   , className =? "splash"         --> doFloat
-  , className =? "pulse"          --> doCenterFloat 
-  , className =? "htop"           --> doCenterFloat
   , className =? "MATLAB R2022b - academic use" --> doCenterFloat]
