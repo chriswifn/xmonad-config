@@ -118,12 +118,12 @@ myTabConfig = def { fontName = myFont
                   }
 
 myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
-                         , TS.ts_background   = 0x000000
+                         , TS.ts_background   = 0xdd000000
                          , TS.ts_font         = myFont 
-                         , TS.ts_node         = (0xccdfe7, 0x323232)
-                         , TS.ts_nodealt      = (0xccdfe7, 0x1e1e1e)
-                         , TS.ts_highlight    = (0xffffff, 0xf78fe7)
-                         , TS.ts_extra        = 0xffffff
+                         , TS.ts_node         = (0xffccdfe7, 0xff323232)
+                         , TS.ts_nodealt      = (0xffccdfe7, 0xff1e1e1e)
+                         , TS.ts_highlight    = (0xffffffff, 0xfff78fe7)
+                         , TS.ts_extra        = 0xffffffff
                          , TS.ts_node_width   = 200 
                          , TS.ts_node_height  = 30
                          , TS.ts_originX      = 0
