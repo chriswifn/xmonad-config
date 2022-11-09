@@ -35,14 +35,16 @@ myClickJustFocuses = False
 myWorkspaces :: Forest String
 myWorkspaces = [ Node "home"
                  [ Node "browser"
-                   [ Node "firefox" []
+                   [ Node "firefox-1" []
+                   , Node "firefox-2" []
                    ]
                  , Node "programming"
                    [ Node "emacs" []
                    , Node "doc" []
                    ]
                  , Node "terminal" 
-                   [ Node "dev" []
+                   [ Node "terminal-1" []
+                   , Node "terminal-2" []
                    , Node "file-terminal" []
                    ]
                  , Node "file-management" []
