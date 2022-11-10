@@ -32,47 +32,37 @@ myClickJustFocuses = False
 
 
 -- workspace names
+standard = [Node (show n ) [] | n <- [1..3]]
 myWorkspaces :: Forest String
-myWorkspaces = [ Node "home"
-                 [ Node "browser"
-                   [ Node "firefox-1" []
-                   , Node "firefox-2" []
-                   ]
+myWorkspaces = [ Node "main"
+                 [ Node "browser" standard
                  , Node "programming"
-                   [ Node "emacs" []
-                   , Node "doc" []
+                   [ Node "emacs" standard 
+                   , Node "doc" standard 
+                   , Node "terminal" standard
                    ]
-                 , Node "terminal" 
-                   [ Node "terminal-1" []
-                   , Node "terminal-2" []
-                   , Node "file-terminal" []
-                   ]
-                 , Node "file-management" []
-                 , Node "entertainment"
-                   [ Node "music" []
+                 , Node "terminal" standard
+                 , Node "file"
+                   [ Node "management" []
+                   , Node "music" []
                    , Node "video" []
                    , Node "image" []
                    ]
                  , Node "virtual" []
-                 , Node "office" []
+                 , Node "null" standard 
                  ]
                , Node "work-programming"
-                 [ Node "browser" []
+                 [ Node "browser" standard
                  , Node "programming"
-                   [ Node "emacs" []
-                   , Node "doc" []
-                   , Node "matlab" []
-                   ]
-                 , Node "reference" []
-                 , Node "terminal"
-                   [ Node "tmux-session" []
-                   , Node "trash-term" []
+                   [ Node "emacs" standard 
+                   , Node "doc" standard 
+                   , Node "terminal" standard
                    ]
                  ]
                , Node "work-sysad"
-                 [ Node "browser" []
-                 , Node "emacs" []
-                 , Node "terminal" []
+                 [ Node "browser" standard
+                 , Node "terminal" standard
+                 , Node "emacs" standard
                  ]
                ]
 
