@@ -21,6 +21,8 @@ import Custom.MyVariables
 import XMonad.Actions.TreeSelect
 -- switch between applications in grid select
 import XMonad.Actions.GridSelect
+-- run or raise
+import XMonad.Actions.WindowGo
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -123,7 +125,7 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- EMACS PROGRAMS
-  [ ("M-e e", spawn $ myEmacs)
+  [ ("M-e e", runOrRaise myEmacs (className =? "Emacs"))
   , ("M-e b", spawn $ myEmacs ++ ("--eval '(ibuffer)'"))
   , ("M-e d", spawn $ myEmacs ++ ("--eval '(dired nil)'"))
   , ("M-e t", spawn $ myEmacs ++ ("--eval '(+vterm/here nil)'"))
@@ -166,8 +168,8 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- GUI PROGRAMS
-  [ ("M-g g", spawn $ "firefox")
-  , ("M-g z", spawn $ "zathura")
-  , ("M-g f", spawn $ "pcmanfm")
-  , ("M-g v", spawn $ "virt-manager")
+  [ ("M-g g", runOrRaise "firefox" (className =? "firefox"))
+  , ("M-g z", runOrRaise "zathura" (className =? "Zathura"))
+  , ("M-g f", runOrRaise "pcmanfm" (className =? "Pcmanfm"))
+  , ("M-g v", runOrRaise "virt-manager" (className =? "Virt-manager"))
   , ("M-g s", spawn $ "slock")]
