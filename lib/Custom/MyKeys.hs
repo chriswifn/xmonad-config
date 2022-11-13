@@ -166,8 +166,8 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- GUI PROGRAMS
-  [ ("M-g", spawn $ "firefox")
-  , ("M-z", spawn $ "zathura")
-  , ("M-S-f", spawn $ "pcmanfm")
-  , ("M-v", spawn $ "virt-manager")
-  , ("M-S-C-s", spawn $ "slock")]
+  [ ("M-g g", spawn $ "firefox")
+  , ("M-g z", spawn $ "zathura")
+  , ("M-g f", spawn $ "pcmanfm")
+  , ("M-g v", spawn $ "virt-manager")
+  , ("M-g s", spawn $ "slock")]
