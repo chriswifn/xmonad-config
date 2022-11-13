@@ -7,7 +7,6 @@ import XMonad
 import Data.Monoid
 import Control.Monad (liftM2)
 import qualified XMonad.StackSet as W
-import XMonad.Actions.TreeSelect
 
 -- some floating functions
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
