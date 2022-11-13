@@ -137,7 +137,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-t n", spawn $ myTerminal ++ ("-c 'nvim' -e nvim"))
   , ("M-t h", spawn $ myTerminal ++ ("-c 'htop' -e htop"))
   , ("M-t a", spawn $ myTerminal ++ ("-c 'mus' -e cmus"))
-  , ("M-t r", spawn $ myTerminal ++ ("-c 'file' -e ranger"))
+  , ("M-t r", spawn $ myTerminal ++ ("-c 'file' -e lf-run"))
   , ("M-t p", spawn $ myTerminal ++ ("-c 'pulse' -e pulsemixer"))
   ]
   ++
