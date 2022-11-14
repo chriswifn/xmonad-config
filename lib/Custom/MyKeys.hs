@@ -8,7 +8,7 @@ import qualified XMonad.StackSet as W
 -- exit
 import System.Exit
 -- cycle and move betweens monitors
-import XMonad.Actions.CycleWS (nextScreen, prevScreen, shiftNextScreen, shiftPrevScreen)
+import XMonad.Actions.CycleWS
 -- copy
 import XMonad.Actions.CopyWindow
 -- eazy keybindings
@@ -18,7 +18,7 @@ import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
 -- for some themes
 import Custom.MyVariables
 -- Treeselect
-import XMonad.Actions.TreeSelect
+import qualified XMonad.Actions.TreeSelect as TS
 -- switch between applications in grid select
 import XMonad.Actions.GridSelect
 -- run or raise
@@ -30,6 +30,8 @@ myKeys = \c -> mkKeymap c $
 
   -- spawn a terminal
   [ ("M-S-<Return>", spawn $ terminal c)
+
+  , ("M-<Return>", runOrRaise myTerminal (className =? "st-256color"))
 
   -- spawn a run launcher (dmenu)
   , ("M-S-p", spawn $ "dmenu_run -l 10 -p 'Application: '")
@@ -111,13 +113,17 @@ myKeys = \c -> mkKeymap c $
   [ ("M-;", Custom.MyVariables.treeselectAction myTSConfig)
 
   -- shift client to selected workspace and shift focus to that client
-  , ("M-b s", treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
+  , ("M-b s", TS.treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
 
   -- go to selected workspace and switch focus
-  , ("M-b g", treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
+  , ("M-b g", TS.treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
 
   -- show all programs in grid and switches focus to the selected one
   , ("M-b b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+
+  , ("M-b n", moveTo Next (wsTagGroup '.'))
+
+  , ("M-b p", moveTo Prev (wsTagGroup '.'))
 
   -- shows all programs in grid and kills the selected one 
   , ("M-b c", withSelectedWindow killWindow (mygridConfig Custom.MyVariables.myColorizer))
