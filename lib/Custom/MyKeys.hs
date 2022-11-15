@@ -121,6 +121,8 @@ myKeys = \c -> mkKeymap c $
   -- show all programs in grid and switches focus to the selected one
   , ("M-b b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
 
+  , ("M-b w", gridselectWorkspace def W.view)
+
   , ("M-b n", moveTo Next (wsTagGroup '.'))
 
   , ("M-b p", moveTo Prev (wsTagGroup '.'))

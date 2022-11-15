@@ -119,16 +119,15 @@ myColorizer = colorRangeFromClassName
                 (0x00,0x00,0x00) -- active fg
 
 -- gridSelect menu layout
-mygridConfig :: p -> GSConfig Window
+mygridConfig :: p -> GSConfig Window 
 mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     { gs_cellheight   = 30
-    , gs_cellwidth    = 1000
+    , gs_cellwidth    = 1000 
     , gs_cellpadding  = 6
     , gs_originFractX = 0.5
     , gs_originFractY = 0.5
     , gs_font         = myFont 
     }
-
 
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
