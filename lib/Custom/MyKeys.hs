@@ -37,7 +37,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-p", spawn $ "dmenu_run -l 10 -p 'Application: '")
 
   -- kill a window
-  , ("M-S-c", kill)
+  , ("M-S-c", kill1)
 
   -- switch between layouts
   , ("M-<Space>", sendMessage NextLayout)
@@ -128,6 +128,18 @@ myKeys = \c -> mkKeymap c $
   -- shows all programs in grid and kills the selected one 
   , ("M-b c", withSelectedWindow killWindow (mygridConfig Custom.MyVariables.myColorizer))
   ]
+  ++
+
+  -- WORKSPACE STUFF
+  [ ("M-" ++ m ++ k, windows $ f i)
+  -- WORKSPACE STUFF
+        | (i, k) <- zip (myMainworkspaces) (map show [1 :: Int ..])
+        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
+  ++
+
+  [ ("M-M1-" ++ m ++ k, windows $ f i)
+        | (i, k) <- zip (myWorkworkspaces) (map show [1 :: Int ..])
+        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
   ++
 
   -- EMACS PROGRAMS

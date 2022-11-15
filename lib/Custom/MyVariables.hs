@@ -9,6 +9,8 @@ import Data.Tree
 import qualified XMonad.Actions.TreeSelect as TS
 -- Grid Select to switch betweens applications
 import XMonad.Actions.GridSelect
+-- ShowWName
+import XMonad.Layout.ShowWName
 
 -- st is objectively the best terminal
 myTerminal :: String
@@ -32,39 +34,22 @@ myClickJustFocuses = False
 
 
 -- workspace names
-standard = [Node (show n ) [] | n <- [1..3]]
-myWorkspaces :: Forest String
+standard = [Node (show n ) [] | n <- [1..2]]
 myWorkspaces = [ Node "main"
-                 [ Node "browser" standard
-                 , Node "programming"
-                   [ Node "emacs" standard 
-                   , Node "doc" standard 
-                   , Node "terminal" standard
-                   ]
-                 , Node "terminal" standard
-                 , Node "file"
-                   [ Node "management" []
-                   , Node "music" []
-                   , Node "video" []
-                   , Node "image" []
-                   ]
-                 , Node "virtual" []
-                 , Node "null" standard 
+                 [ Node "research" standard 
+                 , Node "development" standard
+                 , Node "null" standard
                  ]
                , Node "work-programming"
-                 [ Node "browser" standard
-                 , Node "programming"
-                   [ Node "emacs" standard 
-                   , Node "doc" standard 
-                   , Node "terminal" standard
-                   ]
-                 ]
-               , Node "work-sysad"
-                 [ Node "browser" standard
-                 , Node "terminal" standard
-                 , Node "emacs" standard
+                 [ Node "research" standard
+                 , Node "programming" standard
+                 , Node "null" standard
                  ]
                ]
+
+-- for movement using number keys
+myMainworkspaces = drop 1 (take 10 (TS.toWorkspaces myWorkspaces))
+myWorkworkspaces = drop 11 (take 20 (TS.toWorkspaces myWorkspaces))
 
 treeselectAction :: TS.TSConfig (X ()) -> X ()
 treeselectAction a = TS.treeselectAction a
@@ -144,3 +129,11 @@ mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
     , gs_font         = myFont 
     }
 
+
+myShowWNameTheme :: SWNConfig
+myShowWNameTheme = def
+  { swn_font              = myFont 
+  , swn_fade              = 1.0
+  , swn_bgcolor           = "#323232"
+  , swn_color             = "#ffffff"
+  }
