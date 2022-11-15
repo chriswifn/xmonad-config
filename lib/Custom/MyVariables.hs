@@ -7,10 +7,11 @@ import XMonad.Layout.Tabbed
 -- Treeselect
 import Data.Tree
 import qualified XMonad.Actions.TreeSelect as TS
--- Grid Select to switch betweens applications
-import XMonad.Actions.GridSelect
 -- ShowWName
 import XMonad.Layout.ShowWName
+-- prompts
+import XMonad.Prompt
+import XMonad.Prompt.FuzzyMatch
 
 -- st is objectively the best terminal
 myTerminal :: String
@@ -32,17 +33,42 @@ myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
 myClickJustFocuses = False 
 
+myXPConfig = def
+  { position          = Bottom
+  , searchPredicate   = fuzzyMatch
+  , sorter            = fuzzySort
+  , alwaysHighlight   = True
+  , borderColor       = "#1e1e1e" 
+  , bgColor           = "#1e1e1e" 
+  , fgColor           = "#ffffff" 
+  , bgHLight          = "#f78fe7" 
+  , fgHLight          = "#000000" 
+  , defaultText       = ""
+  , font              = myFont 
+  , height            = 20
+  , promptBorderWidth = 5
+  -- , maxComplColumns   = Just 1
+  , promptKeymap      = vimLikeXPKeymap
+  }
 
 -- workspace names
-standard = [Node (show n ) [] | n <- [1..2]]
+standard = [Node (show n ) [] | n <- [1..3]]
 myWorkspaces = [ Node "main"
                  [ Node "research" standard 
                  , Node "development" standard
+                 , Node "reference" standard
                  , Node "null" standard
                  ]
                , Node "work-programming"
                  [ Node "research" standard
-                 , Node "programming" standard
+                 , Node "development" standard
+                 , Node "reference" standard
+                 , Node "null" standard
+                 ]
+               , Node "work-sysad"
+                 [ Node "research" standard
+                 , Node "development" standard
+                 , Node "reference" standard
                  , Node "null" standard
                  ]
                ]
@@ -110,25 +136,6 @@ myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
                          , TS.ts_navigate     = TS.defaultNavigation
                          }
                   
-myColorizer :: Window -> Bool -> X (String, String)
-myColorizer = colorRangeFromClassName
-                (0x1e,0x1e,0x1e) -- lowest inactive bg
-                (0x32,0x32,0x32) -- highest inactive bg
-                (0xf7,0x8f,0xe7) -- active bg
-                (0xff,0xff,0xff) -- inactive fg
-                (0x00,0x00,0x00) -- active fg
-
--- gridSelect menu layout
-mygridConfig :: p -> GSConfig Window 
-mygridConfig colorizer = (buildDefaultGSConfig myColorizer)
-    { gs_cellheight   = 30
-    , gs_cellwidth    = 1000 
-    , gs_cellpadding  = 6
-    , gs_originFractX = 0.5
-    , gs_originFractY = 0.5
-    , gs_font         = myFont 
-    }
-
 myShowWNameTheme :: SWNConfig
 myShowWNameTheme = def
   { swn_font              = myFont 

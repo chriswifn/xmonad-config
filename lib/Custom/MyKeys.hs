@@ -19,10 +19,12 @@ import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
 import Custom.MyVariables
 -- Treeselect
 import qualified XMonad.Actions.TreeSelect as TS
--- switch between applications in grid select
-import XMonad.Actions.GridSelect
 -- run or raise
 import XMonad.Actions.WindowGo
+
+-- prompts for open windows and workspaces
+import XMonad.Prompt.Window
+import XMonad.Prompt.Workspace
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -108,7 +110,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-q", io (exitWith ExitSuccess))]
   ++
 
-  -- TREESELECT AND GRID (for workspaces and a custom menu)
+  -- TREESELECT AND PROMPT (for workspaces and a custom menu)
   -- custom menu
   [ ("M-;", Custom.MyVariables.treeselectAction myTSConfig)
 
@@ -119,30 +121,28 @@ myKeys = \c -> mkKeymap c $
   , ("M-b g", TS.treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
 
   -- show all programs in grid and switches focus to the selected one
-  , ("M-b b", goToSelected $ mygridConfig Custom.MyVariables.myColorizer)
+  , ("M-b b", windowPrompt myXPConfig Goto allWindows)
 
-  , ("M-b w", gridselectWorkspace def W.view)
+  , ("M-b c", TS.treeselectWorkspace myTSConfig myWorkspaces (\ws -> copy ws))
+
+  , ("M-b w", workspacePrompt myXPConfig (windows . W.view))
 
   , ("M-b n", moveTo Next (wsTagGroup '.'))
 
   , ("M-b p", moveTo Prev (wsTagGroup '.'))
-
-  -- shows all programs in grid and kills the selected one 
-  , ("M-b c", withSelectedWindow killWindow (mygridConfig Custom.MyVariables.myColorizer))
   ]
   ++
 
   -- WORKSPACE STUFF
-  [ ("M-" ++ m ++ k, windows $ f i)
-  -- WORKSPACE STUFF
-        | (i, k) <- zip (myMainworkspaces) (map show [1 :: Int ..])
-        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  ++
+  -- [ ("M-" ++ m ++ k, windows $ f i)
+  --       | (i, k) <- zip (myMainworkspaces) (map show [1 :: Int ..])
+  --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
+  -- ++
 
-  [ ("M-M1-" ++ m ++ k, windows $ f i)
-        | (i, k) <- zip (myWorkworkspaces) (map show [1 :: Int ..])
-        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  ++
+  -- [ ("M-M1-" ++ m ++ k, windows $ f i)
+  --       | (i, k) <- zip (myWorkworkspaces) (map show [1 :: Int ..])
+  --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
+  -- ++
 
   -- EMACS PROGRAMS
   [ ("M-e e", runOrRaise myEmacs (className =? "Emacs"))
