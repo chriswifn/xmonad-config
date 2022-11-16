@@ -21,6 +21,9 @@ myTerminal = "st "
 myEmacs :: String
 myEmacs = "emacsclient -c -a 'emacs' "
 
+myBrowser :: String
+myBrowser = "firefox"
+
 -- Alt is a stupid modifier key, so use Super
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -48,7 +51,7 @@ myXPConfig = def
   , height            = 20
   , promptBorderWidth = 5
   -- , maxComplColumns   = Just 1
-  , promptKeymap      = vimLikeXPKeymap
+  , promptKeymap      = emacsLikeXPKeymap
   }
 
 -- workspace names
@@ -74,8 +77,8 @@ myWorkspaces = [ Node "main"
                ]
 
 -- for movement using number keys
-myMainworkspaces = drop 1 (take 10 (TS.toWorkspaces myWorkspaces))
-myWorkworkspaces = drop 11 (take 20 (TS.toWorkspaces myWorkspaces))
+-- myMainworkspaces = drop 1 (take 10 (TS.toWorkspaces myWorkspaces))
+-- myWorkworkspaces = drop 11 (take 20 (TS.toWorkspaces myWorkspaces))
 
 treeselectAction :: TS.TSConfig (X ()) -> X ()
 treeselectAction a = TS.treeselectAction a

@@ -25,6 +25,17 @@ import XMonad.Actions.WindowGo
 -- prompts for open windows and workspaces
 import XMonad.Prompt.Window
 import XMonad.Prompt.Workspace
+import XMonad.Prompt.Pass
+import XMonad.Prompt.RunOrRaise
+import XMonad.Prompt.Shell (prompt)
+import qualified XMonad.Actions.Search as S
+
+searchList :: [(String, S.SearchEngine)]
+searchList = [ ("g", S.google)
+             , ("d", S.duckduckgo)
+             , ("w", S.wikipedia)
+             , ("a", S.amazon)
+             ]
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -83,7 +94,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-t", withFocused $ windows . W.sink)
 
   -- make a client fullscreen
-  , ("M-f", sendMessage $ Toggle "Full")
+  , ("M-S-f", sendMessage $ Toggle "Full")
 
   -- focus on next screen
   , ("M-.", nextScreen)
@@ -133,6 +144,18 @@ myKeys = \c -> mkKeymap c $
   , ("M-b n", moveTo Next (wsTagGroup '.'))
 
   , ("M-b p", moveTo Prev (wsTagGroup '.'))
+
+  , ("M-b l", runOrRaisePrompt myXPConfig)
+
+  , ("M-v c", passPrompt myXPConfig)
+
+  , ("M-v n", passGeneratePrompt myXPConfig)
+
+  , ("M-v t", passTypePrompt myXPConfig)
+
+  , ("M-v e", passEditPrompt myXPConfig)
+
+  , ("M-v r", passRemovePrompt myXPConfig)
   ]
   ++
 
@@ -162,7 +185,12 @@ myKeys = \c -> mkKeymap c $
   , ("M-t a", spawn $ myTerminal ++ ("-c 'mus' -e cmus"))
   , ("M-t r", spawn $ myTerminal ++ ("-c 'file' -e lf-run"))
   , ("M-t p", spawn $ myTerminal ++ ("-c 'pulse' -e pulsemixer"))
+  , ("M-t f", prompt ("st" ++ " -e") myXPConfig)
   ]
+  ++
+
+  -- Search shit in browser using mutiple search engines
+  [ ("M-f " ++ k, S.promptSearchBrowser myXPConfig "firefox" f) | (k,f) <- searchList]
   ++
 
   -- OPEN WITH DMENU
