@@ -111,6 +111,7 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- TREESELECT AND PROMPT (for workspaces and a custom menu)
+  -- MOSTLY FOR WORKSPACE STUFF
   -- custom menu
   [ ("M-;", Custom.MyVariables.treeselectAction myTSConfig)
 
@@ -126,6 +127,8 @@ myKeys = \c -> mkKeymap c $
   , ("M-b c", TS.treeselectWorkspace myTSConfig myWorkspaces (\ws -> copy ws))
 
   , ("M-b w", workspacePrompt myXPConfig (windows . W.view))
+
+  , ("M-b t", toggleWS)
 
   , ("M-b n", moveTo Next (wsTagGroup '.'))
 
