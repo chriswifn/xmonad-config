@@ -31,11 +31,16 @@ import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Shell (prompt)
 import qualified XMonad.Actions.Search as S
 
+archwiki :: S.SearchEngine
+archwiki = S.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search="
+
 searchList :: [(String, S.SearchEngine)]
 searchList = [ ("g", S.google)
              , ("d", S.duckduckgo)
              , ("w", S.wikipedia)
-             , ("a", S.amazon)
+             , ("s", S.amazon)
+             , ("a", archwiki)
+             , ("y", S.youtube)
              ]
 
 -- Keymaps

@@ -133,7 +133,7 @@ myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
                          , TS.ts_font         = myFont 
                          , TS.ts_node         = (0xffccdfe7, 0xff323232)
                          , TS.ts_nodealt      = (0xffccdfe7, 0xff1e1e1e)
-                         , TS.ts_highlight    = (0xffffffff, 0xfff78fe7)
+                         , TS.ts_highlight    = (0xff000000, 0xfff78fe7)
                          , TS.ts_extra        = 0xffffffff
                          , TS.ts_node_width   = 200 
                          , TS.ts_node_height  = 30
