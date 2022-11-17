@@ -7,8 +7,6 @@ import XMonad.Layout.Tabbed
 -- Treeselect
 import Data.Tree
 import qualified XMonad.Actions.TreeSelect as TS
--- ShowWName
-import XMonad.Layout.ShowWName
 -- prompts
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch
@@ -138,11 +136,3 @@ myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
                          , TS.ts_indent       = 80
                          , TS.ts_navigate     = TS.defaultNavigation
                          }
-                  
-myShowWNameTheme :: SWNConfig
-myShowWNameTheme = def
-  { swn_font              = myFont 
-  , swn_fade              = 1.0
-  , swn_bgcolor           = "#323232"
-  , swn_color             = "#ffffff"
-  }

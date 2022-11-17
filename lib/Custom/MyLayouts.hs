@@ -8,16 +8,13 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 -- toggle layouts
 import XMonad.Layout.ToggleLayouts
--- showWName
-import XMonad.Layout.ShowWName
 -- for perworkspace to work
 import Custom.MyVariables
 
 -- smartBorders removes the border if there is only one screen and only
 -- one client on a workspace
 -- noBorders removes the border. 
-myLayoutHook = showWName' myShowWNameTheme
-               $ lessBorders (Combine Difference Screen OnlyScreenFloat)
+myLayoutHook = lessBorders (Combine Difference Screen OnlyScreenFloat)
                $ myLayout
 
 -- I only use tiled and tabbed here because I  toggle
