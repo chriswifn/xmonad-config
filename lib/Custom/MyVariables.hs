@@ -72,6 +72,12 @@ myWorkspaces = [ Node "main"
                  , Node "reference" standard
                  , Node "null" standard
                  ]
+               , Node "university"
+                 [ Node "research" standard
+                 , Node "development" standard
+                 , Node "reference" standard
+                 , Node "null" standard
+                 ]
                ]
 
 -- for movement using number keys
