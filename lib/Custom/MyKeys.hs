@@ -3,6 +3,7 @@ module Custom.MyKeys where
 -- main libraries
 import XMonad
 import qualified XMonad.StackSet as W
+import XMonad.Util.Run
 
 -- some other necessary imports
 -- exit
@@ -44,7 +45,7 @@ myKeys = \c -> mkKeymap c $
   -- spawn a terminal
   [ ("M-S-<Return>", spawn $ terminal c)
 
-  , ("M-<Return>", runOrRaise myTerminal (className =? "st-256color"))
+  , ("M-<Return>", raiseNextMaybe (spawn "st") (className =? "st-256color"))
 
   -- spawn a run launcher (dmenu)
   , ("M-S-p", spawn $ "dmenu_run -l 10 -p 'Application: '")
@@ -171,7 +172,7 @@ myKeys = \c -> mkKeymap c $
   -- ++
 
   -- EMACS PROGRAMS
-  [ ("M-e e", runOrRaise myEmacs (className =? "Emacs"))
+  [ ("M-e e", raiseNextMaybe (spawn myEmacs) (className =? "Emacs"))
   , ("M-e b", spawn $ myEmacs ++ ("--eval '(ibuffer)'"))
   , ("M-e d", spawn $ myEmacs ++ ("--eval '(dired nil)'"))
   , ("M-e t", spawn $ myEmacs ++ ("--eval '(+vterm/here nil)'"))
@@ -179,12 +180,12 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- TERMINAL PROGRAMS
-  [ ("M-t t", spawn $ myTerminal ++ ("-c 'dev' -e tmux"))
-  , ("M-t n", spawn $ myTerminal ++ ("-c 'nvim' -e nvim"))
-  , ("M-t h", spawn $ myTerminal ++ ("-c 'htop' -e htop"))
-  , ("M-t a", spawn $ myTerminal ++ ("-c 'mus' -e cmus"))
-  , ("M-t r", spawn $ myTerminal ++ ("-c 'file' -e lf-run"))
-  , ("M-t p", spawn $ myTerminal ++ ("-c 'pulse' -e pulsemixer"))
+  [ ("M-t t", raiseMaybe (runInTerm "-T tmux" "tmux") (title =? "tmux"))
+  , ("M-t n", raiseMaybe (runInTerm "-T nvim" "nvim") (title =? "nvim"))
+  , ("M-t h", raiseMaybe (runInTerm "-T htop" "htop") (title =? "htop"))
+  , ("M-t a", raiseMaybe (runInTerm "-T cmus" "cmus") (title =? "cmus"))
+  , ("M-t r", raiseMaybe (runInTerm "-T lf" "lf-run") (title =? "lf"))
+  , ("M-t p", raiseMaybe (runInTerm "-T pulsemixer" "pulsemixer") (title =? "pulsemixer"))
   , ("M-t f", prompt ("st" ++ " -e") myXPConfig)
   ]
   ++
@@ -219,7 +220,8 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- GUI PROGRAMS
-  [ ("M-g g", runOrRaise "firefox" (className =? "firefox"))
+  [ ("M-g g", raiseNextMaybe (spawn "firefox") (className =? "firefox"))
+  , ("M-g b", spawn "firefox")
   , ("M-g z", runOrRaise "zathura" (className =? "Zathura"))
   , ("M-g f", runOrRaise "pcmanfm" (className =? "Pcmanfm"))
   , ("M-g v", runOrRaise "virt-manager" (className =? "Virt-manager"))
