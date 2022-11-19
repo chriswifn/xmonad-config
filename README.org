@@ -2,17 +2,22 @@
 #+AUTHOR: Christian Hageloch
 #+STARTUP: showeverything
 
-This is my XMonad Configuration. It is very minimal by design.
-
-* Table of Contents :toc:
-- [[#features][Features]]
-- [[#installation][Installation]]
+This is my XMonad Configuration. I switch between a Treeselect and Projects workflow (one branch for each)
 
 * Features
-- No bar: I use window rules an ShowWName (yes that is a feature)
-- custom window rules (the killer feature of standalone window managers)
+** main branch:
+- organize workspaces in a tree
+  - Treeselect 
+  - dedicate different tasks to a different set of workspaces
 - keyboard shortcuts with XMonad.Util.EZConfig for easy key declaration and keychords
-- Dwm like "tag"-functionality (it is not the same as dwm but it works for me)
+- Dwm like "tag"-functionality (no merging but sticky) 
+** dynamicprojects branch: 
+- organize workspaces in projects:
+  - launch certain applications in a selected workspace
+  - ability to change project directory: useful when working in a specific directory all the time
+  - merging projects together (kindof like dwm but not really)
+- keyboard shortcuts with XMonad.Util.EZConfig for easy key declaration and keychords
+- Dwm like "tag"-functionality (no merging but sticky) 
 
 * Installation
 - Install xmonad and xmonad-contrib
