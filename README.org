@@ -2,24 +2,6 @@
 #+AUTHOR: Christian Hageloch
 #+STARTUP: showeverything
 
-This is my XMonad Configuration. It is very minimal by design.
+dynamicprojects branch
+See main branch for README
 
-* Table of Contents :toc:
-- [[#features][Features]]
-- [[#installation][Installation]]
-
-* Features
-- No bar: I use window rules an ShowWName (yes that is a feature)
-- custom window rules (the killer feature of standalone window managers)
-- keyboard shortcuts with XMonad.Util.EZConfig for easy key declaration and keychords
-- Dwm like "tag"-functionality (it is not the same as dwm but it works for me)
-
-* Installation
-- Install xmonad and xmonad-contrib
-  #+begin_src bash
-    sudo pacman -S xmonad xmonad-contrib
-  #+end_src
-- clone the repository
-  #+begin_src bash
-    git clone https://github.com/chriswifn/xmonad-config.git ~/.config/xmonad
-  #+end_src
