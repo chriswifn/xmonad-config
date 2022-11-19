@@ -37,8 +37,8 @@ myXPConfig = def
   { position             = Bottom
   , searchPredicate      = fuzzyMatch
   , sorter               = fuzzySort
-  , alwaysHighlight      = True
-  , borderColor          = "#1e1e1e" 
+  , alwaysHighlight      = True 
+  , borderColor          = "#ccdfe7"
   , bgColor              = "#1e1e1e" 
   , fgColor              = "#ffffff" 
   , bgHLight             = "#f78fe7" 
@@ -46,14 +46,15 @@ myXPConfig = def
   , defaultText          = ""
   , font                 = myFont 
   , height               = 20
-  , promptBorderWidth    = 5
+  , promptBorderWidth    = 1
   , maxComplColumns      = Just 1
+  , maxComplRows         = Just 10
   , complCaseSensitivity = CaseInSensitive
   , promptKeymap         = emacsLikeXPKeymap
   , historySize          = 0
   }
 
--- border widht
+-- border width
 myBorderWidth :: Dimension 
 myBorderWidth = 1
 
@@ -66,7 +67,6 @@ myFocusedBorderColor :: String
 myFocusedBorderColor = "#f78fe7"
 
 myFont :: String
--- myFont = "xft:Monoid:regular:size=9:antialias=true:hinting=true"
 myFont = "xft:Terminus (TTF):regular:size=12:antialias=true:hinting=true"
 
 myTabConfig = def { fontName = myFont 
