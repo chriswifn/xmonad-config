@@ -4,12 +4,11 @@ module Custom.MyVariables where
 import XMonad
 -- tabbed layout
 import XMonad.Layout.Tabbed
--- Treeselect
-import Data.Tree
-import qualified XMonad.Actions.TreeSelect as TS
 -- prompts
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch
+
+import XMonad.Actions.DynamicProjects
 
 -- st is objectively the best terminal
 myTerminal :: String
@@ -35,75 +34,26 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False 
 
 myXPConfig = def
-  { position          = Bottom
-  , searchPredicate   = fuzzyMatch
-  , sorter            = fuzzySort
-  , alwaysHighlight   = True
-  , borderColor       = "#1e1e1e" 
-  , bgColor           = "#1e1e1e" 
-  , fgColor           = "#ffffff" 
-  , bgHLight          = "#f78fe7" 
-  , fgHLight          = "#000000" 
-  , defaultText       = ""
-  , font              = myFont 
-  , height            = 20
-  , promptBorderWidth = 5
-  -- , maxComplColumns   = Just 1
-  , promptKeymap      = emacsLikeXPKeymap
+  { position             = Bottom
+  , searchPredicate      = fuzzyMatch
+  , sorter               = fuzzySort
+  , alwaysHighlight      = True
+  , borderColor          = "#1e1e1e" 
+  , bgColor              = "#1e1e1e" 
+  , fgColor              = "#ffffff" 
+  , bgHLight             = "#f78fe7" 
+  , fgHLight             = "#000000" 
+  , defaultText          = ""
+  , font                 = myFont 
+  , height               = 20
+  , promptBorderWidth    = 5
+  , maxComplColumns      = Just 1
+  , complCaseSensitivity = CaseInSensitive
+  , promptKeymap         = emacsLikeXPKeymap
+  , historySize          = 0
   }
 
--- workspace names
-standard = [Node (show n ) [] | n <- [1..3]]
-myWorkspaces = [ Node "main"
-                 [ Node "research" standard 
-                 , Node "development" standard
-                 , Node "reference" standard
-                 , Node "null" standard
-                 ]
-               , Node "work-programming"
-                 [ Node "research" standard
-                 , Node "development" standard
-                 , Node "reference" standard
-                 , Node "null" standard
-                 ]
-               , Node "work-sysad"
-                 [ Node "research" standard
-                 , Node "development" standard
-                 , Node "reference" standard
-                 , Node "null" standard
-                 ]
-               , Node "university"
-                 [ Node "research" standard
-                 , Node "development" standard
-                 , Node "reference" standard
-                 , Node "null" standard
-                 ]
-               ]
-
--- for movement using number keys
--- myMainworkspaces = drop 1 (take 10 (TS.toWorkspaces myWorkspaces))
--- myWorkworkspaces = drop 11 (take 20 (TS.toWorkspaces myWorkspaces))
-
-treeselectAction :: TS.TSConfig (X ()) -> X ()
-treeselectAction a = TS.treeselectAction a
-  [ Node (TS.TSNode "volume" "change the volume" (spawn "st -c 'pulse' -e pulsemixer"))
-    [ Node (TS.TSNode "microphone" "toggle mute (microphone)" (spawn "pactl set-source-mute 0 'toggle'")) []
-    , Node (TS.TSNode "speaker/headphone" "toggle mute (speaker/headphone)" (spawn "pactl set-sink-mute 0 'toggle'")) []
-    ]
-  , Node (TS.TSNode "brightness" "change the brightness" (return ())) 
-    [ Node (TS.TSNode "bright" "set brightness to 100%" (spawn "brightnessctl set 100%")) []
-    , Node (TS.TSNode "medium" "set brightness to 50%" (spawn "brightnessctl set 50%")) []
-    , Node (TS.TSNode "low" "set brightness to 10%" (spawn "brightnessctl set 10%")) []
-    ]
-  , Node (TS.TSNode "blue-light-filter" "toggle bluelight filter" (spawn "gamma")) []
-  , Node (TS.TSNode "logout" "menu for logout options" (return ())) 
-    [ Node (TS.TSNode "shutdown" "shutdown the system" (spawn "systemctl poweroff")) []
-    , Node (TS.TSNode "reboot" "reboot the system" (spawn "systemctl reboot")) []
-    , Node (TS.TSNode "lock" "lock the system with slock" (spawn "slock")) []
-    ]
-  ]
-
--- border widht: a nice big border
+-- border widht
 myBorderWidth :: Dimension 
 myBorderWidth = 1
 
@@ -128,17 +78,83 @@ myTabConfig = def { fontName = myFont
                   , inactiveTextColor = "#ccdfe7"
                   }
 
-myTSConfig = TS.TSConfig { TS.ts_hidechildren = False
-                         , TS.ts_background   = 0xdd000000
-                         , TS.ts_font         = myFont 
-                         , TS.ts_node         = (0xffccdfe7, 0xff323232)
-                         , TS.ts_nodealt      = (0xffccdfe7, 0xff1e1e1e)
-                         , TS.ts_highlight    = (0xff000000, 0xfff78fe7)
-                         , TS.ts_extra        = 0xffffffff
-                         , TS.ts_node_width   = 200 
-                         , TS.ts_node_height  = 30
-                         , TS.ts_originX      = 0
-                         , TS.ts_originY      = 0
-                         , TS.ts_indent       = 80
-                         , TS.ts_navigate     = TS.defaultNavigation
-                         }
+webWS :: String
+webWS = "web"
+
+emacsWS :: String
+emacsWS = "emacs"
+
+devWS :: String
+devWS = "dev"
+
+fileWS :: String
+fileWS = "file"
+
+officeWS :: String
+officeWS = "office"
+
+worktutWS :: String
+worktutWS = "worktut"
+
+worksysWS :: String
+worksysWS = "worksys"
+
+nullWS :: String
+nullWS = "null"
+
+temptermWS :: String
+temptermWS = "tempterm"
+
+
+myWorkspaces :: [WorkspaceId]
+myWorkspaces = [webWS, emacsWS, devWS, fileWS, officeWS, worktutWS, worksysWS, nullWS, temptermWS]
+
+projects :: [Project]
+projects =
+  [ Project { projectName      = webWS
+            , projectDirectory = "~/"
+            , projectStartHook = Nothing 
+            }
+
+  , Project { projectName      = emacsWS
+            , projectDirectory = "~/"
+            , projectStartHook = Just $ do spawn myEmacs
+            }
+
+  , Project { projectName      = devWS
+            , projectDirectory = "~/"
+            , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s dev")
+            }
+
+  , Project { projectName      = fileWS 
+            , projectDirectory = "~/"
+            , projectStartHook = Just $ do spawn (myTerminal <> " -e lf-run")
+            }
+
+  , Project { projectName      = officeWS 
+            , projectDirectory = "~/Documents"
+            , projectStartHook = Just $ do spawn "libreoffice" 
+            }
+
+  , Project { projectName      = worktutWS 
+            , projectDirectory = "~/Documents/Uni/num_prog"
+            , projectStartHook = Just $ do spawn (myEmacs ++ ("--eval '(dired nil)'"))
+                                           spawn (myTerminal <> " -e tmux new-session -A -s tut")
+            }
+
+  , Project { projectName      = worksysWS 
+            , projectDirectory = "~/"
+            , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s sys") 
+            }
+
+  , Project { projectName      = nullWS 
+            , projectDirectory = "~/"
+            , projectStartHook = Nothing 
+            }
+
+  , Project { projectName      = temptermWS 
+            , projectDirectory = "~/"
+            , projectStartHook = Nothing 
+            }
+  ]
+

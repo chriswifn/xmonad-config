@@ -9,12 +9,11 @@ import Custom.MyWindowRules
 import Custom.MyKeys
 import Custom.MySwallow
 
-import XMonad.Actions.TreeSelect
-import XMonad.Hooks.WorkspaceHistory
+import XMonad.Actions.DynamicProjects
 
 -- the main function: this is where the magic happens
 main :: IO ()
-main = xmonad $ defaults
+main = xmonad $ dynamicProjects projects $ defaults
 
 defaults = def {
   -- simple stuff
@@ -23,7 +22,7 @@ defaults = def {
   clickJustFocuses = myClickJustFocuses,
   borderWidth = myBorderWidth,
   modMask = myModMask,
-  workspaces = toWorkspaces myWorkspaces,
+  workspaces = myWorkspaces,
   normalBorderColor  = myNormalBorderColor,
   focusedBorderColor = myFocusedBorderColor,
 
@@ -34,6 +33,5 @@ defaults = def {
   layoutHook = myLayoutHook,
   handleEventHook = myHandleEventHook, 
   startupHook = myStartupHook,
-  manageHook = myManageHook,
-  logHook = workspaceHistoryHook
+  manageHook = myManageHook
   }

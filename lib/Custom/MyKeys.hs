@@ -11,17 +11,17 @@ import System.Exit
 -- cycle and move betweens monitors
 import XMonad.Actions.CycleWS
 -- copy
-import XMonad.Actions.CopyWindow
+import XMonad.Actions.CopyWindow (copy, copyToAll, killAllOtherCopies, kill1)
 -- eazy keybindings
 import XMonad.Util.EZConfig (additionalKeysP, mkKeymap)
 -- toggle fullscreen
 import XMonad.Layout.ToggleLayouts (ToggleLayout (Toggle))
 -- for some themes
 import Custom.MyVariables
--- Treeselect
-import qualified XMonad.Actions.TreeSelect as TS
 -- run or raise
 import XMonad.Actions.WindowGo
+-- dynamic projects
+import XMonad.Actions.DynamicProjects
 
 -- prompts for open windows and workspaces
 import XMonad.Prompt.Window
@@ -127,33 +127,30 @@ myKeys = \c -> mkKeymap c $
   , ("M-S-q", io (exitWith ExitSuccess))]
   ++
 
-  -- TREESELECT AND PROMPT (for workspaces and a custom menu)
-  -- MOSTLY FOR WORKSPACE STUFF
-  -- custom menu
-  [ ("M-;", Custom.MyVariables.treeselectAction myTSConfig)
-
-  -- shift client to selected workspace and shift focus to that client
-  , ("M-b s", TS.treeselectWorkspace myTSConfig myWorkspaces (\ws -> W.view ws . W.shift ws))
-
-  -- go to selected workspace and switch focus
-  , ("M-b g", TS.treeselectWorkspace myTSConfig myWorkspaces W.greedyView)
-
-  -- show all programs in grid and switches focus to the selected one
-  , ("M-b b", windowPrompt myXPConfig Goto allWindows)
-
-  , ("M-b c", TS.treeselectWorkspace myTSConfig myWorkspaces (\ws -> copy ws))
+  -- STUFF FOR DYNAMIC PROJECTS (mainly prompts)
+  [ ("M-b b", windowPrompt myXPConfig Goto allWindows)
 
   , ("M-b w", workspacePrompt myXPConfig (windows . W.view))
 
+  , ("M-b c", workspacePrompt myXPConfig (windows . copy))
+
+  , ("M-b p", switchProjectPrompt myXPConfig)
+
+  , ("M-b r", renameProjectPrompt myXPConfig)
+
+  , ("M-b d", changeProjectDirPrompt myXPConfig)
+
+  , ("M-b s", shiftToProjectPrompt myXPConfig)
+
   , ("M-b t", toggleWS)
-
-  , ("M-b n", moveTo Next (wsTagGroup '.'))
-
-  , ("M-b p", moveTo Prev (wsTagGroup '.'))
 
   , ("M-b l", runOrRaisePrompt myXPConfig)
 
-  , ("M-v c", passPrompt myXPConfig)
+  ]
+  ++
+
+  -- PASS PROMPTS
+  [ ("M-v c", passPrompt myXPConfig)
 
   , ("M-v n", passGeneratePrompt myXPConfig)
 
