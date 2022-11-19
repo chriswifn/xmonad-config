@@ -130,7 +130,7 @@ myKeys = \c -> mkKeymap c $
   -- STUFF FOR DYNAMIC PROJECTS (mainly prompts)
   [ ("M-b b", windowPrompt myXPConfig Goto allWindows)
 
-  , ("M-b w", workspacePrompt myXPConfig (windows . W.view))
+  , ("M-b g", workspacePrompt myXPConfig (windows . W.view))
 
   , ("M-b c", workspacePrompt myXPConfig (windows . copy))
 
