@@ -1,4 +1,4 @@
-
+module Custom.MyVariables where
 
 -- main library
 import XMonad
