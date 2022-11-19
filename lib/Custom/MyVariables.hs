@@ -105,9 +105,12 @@ nullWS = "null"
 temptermWS :: String
 temptermWS = "tempterm"
 
+privatefireWS :: String
+privatefireWS = "firefox"
+
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = [webWS, emacsWS, devWS, fileWS, officeWS, worktutWS, worksysWS, nullWS, temptermWS]
+myWorkspaces = [webWS, emacsWS, devWS, fileWS, officeWS, worktutWS, worksysWS, nullWS, temptermWS, privatefireWS]
 
 projects :: [Project]
 projects =
@@ -155,6 +158,11 @@ projects =
   , Project { projectName      = temptermWS 
             , projectDirectory = "~/"
             , projectStartHook = Nothing 
+            }
+
+  , Project { projectName      = privatefireWS 
+            , projectDirectory = "~/"
+            , projectStartHook = Just $ do spawn "firefox --private-window" 
             }
   ]
 
