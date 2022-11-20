@@ -126,6 +126,8 @@ myKeys = \c -> mkKeymap c $
 
   , ("M-b f", selectWindow myemConf >>=  (`whenJust` windows . W.focusWindow))
 
+  , ("M-b k", selectWindow myemkillConf >>=  (`whenJust` killWindow))
+
   , ("M-b p", switchProjectPrompt myXPConfig)
 
   , ("M-b r", renameProjectPrompt myXPConfig)

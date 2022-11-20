@@ -170,7 +170,7 @@ projects =
 
 
 myemConf :: EasyMotionConfig
-myemConf = def { txtCol = "#ffffff"
+myemConf = def { txtCol = "#44bc44"
                  , bgCol = "#1e1e1e"
                  , borderCol = "#ccdfe7"
                  , cancelKey = xK_Escape
@@ -178,3 +178,13 @@ myemConf = def { txtCol = "#ffffff"
                  , emFont = "xft:Terminus (TTF):regular:size=22:antialias=true:hinting=true"
                  , borderPx = 1
                }
+
+myemkillConf :: EasyMotionConfig
+myemkillConf = def { txtCol = "#ff8059"
+                   , bgCol = "#1e1e1e"
+                   , borderCol = "#ccdfe7"
+                   , cancelKey = xK_Escape
+                   , overlayF = fixedSize 100 100 
+                   , emFont = "xft:Terminus (TTF):regular:size=22:antialias=true:hinting=true"
+                   , borderPx = 1
+                   }
