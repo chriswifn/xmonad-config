@@ -10,6 +10,8 @@ import XMonad.Prompt.FuzzyMatch
 
 import XMonad.Actions.DynamicProjects
 
+import XMonad.Actions.EasyMotion (EasyMotionConfig (..), fixedSize)
+
 -- st is objectively the best terminal
 myTerminal :: String
 myTerminal = "st "
@@ -166,3 +168,13 @@ projects =
             }
   ]
 
+
+myemConf :: EasyMotionConfig
+myemConf = def { txtCol = "#ffffff"
+                 , bgCol = "#1e1e1e"
+                 , borderCol = "#ccdfe7"
+                 , cancelKey = xK_Escape
+                 , overlayF = fixedSize 100 100 
+                 , emFont = "xft:Terminus (TTF):regular:size=22:antialias=true:hinting=true"
+                 , borderPx = 1
+               }

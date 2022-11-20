@@ -9,7 +9,7 @@ import XMonad.Util.Run
 -- exit
 import System.Exit
 -- cycle and move betweens monitors
-import XMonad.Actions.CycleWS
+import XMonad.Actions.CycleWS (toggleWS)
 -- copy
 import XMonad.Actions.CopyWindow (copy, copyToAll, killAllOtherCopies, kill1)
 -- eazy keybindings
@@ -22,6 +22,8 @@ import Custom.MyVariables
 import XMonad.Actions.WindowGo
 -- dynamic projects
 import XMonad.Actions.DynamicProjects
+
+import XMonad.Actions.EasyMotion (selectWindow)
 
 -- prompts for open windows and workspaces
 import XMonad.Prompt.Window
@@ -102,18 +104,6 @@ myKeys = \c -> mkKeymap c $
   -- make a client fullscreen
   , ("M-S-f", sendMessage $ Toggle "Full")
 
-  -- focus on next screen
-  , ("M-.", nextScreen)
-
-  -- focus on previos screen
-  , ("M-,", prevScreen)
-
-  -- shift client to next screen and focus on it
-  , ("M-S-.", shiftNextScreen >> nextScreen)
-
-  -- shift client to previous screen and focus on it
-  , ("M-S-,", shiftPrevScreen >> prevScreen)
-
   -- increment the amount of master nodes
   , ("M-d", sendMessage (IncMasterN 1))
 
@@ -133,6 +123,8 @@ myKeys = \c -> mkKeymap c $
   , ("M-b g", workspacePrompt myXPConfig (windows . W.view))
 
   , ("M-b c", workspacePrompt myXPConfig (windows . copy))
+
+  , ("M-b f", selectWindow myemConf >>=  (`whenJust` windows . W.focusWindow))
 
   , ("M-b p", switchProjectPrompt myXPConfig)
 
