@@ -29,20 +29,6 @@ import XMonad.Actions.EasyMotion (selectWindow)
 import XMonad.Prompt.Window
 import XMonad.Prompt.Workspace
 import XMonad.Prompt.RunOrRaise
-import XMonad.Prompt.Shell (prompt)
-import qualified XMonad.Actions.Search as S
-
-archwiki :: S.SearchEngine
-archwiki = S.searchEngine "archwiki" "https://wiki.archlinux.org/index.php?search="
-
-searchList :: [(String, S.SearchEngine)]
-searchList = [ ("g", S.google)
-             , ("d", S.duckduckgo)
-             , ("w", S.wikipedia)
-             , ("s", S.amazon)
-             , ("a", archwiki)
-             , ("y", S.youtube)
-             ]
 
 -- Keymaps
 myKeys = \c -> mkKeymap c $
@@ -170,12 +156,7 @@ myKeys = \c -> mkKeymap c $
   , ("M-t a", raiseMaybe (runInTerm "-T cmus" "cmus") (title =? "cmus"))
   , ("M-t r", raiseMaybe (runInTerm "-T lf" "lf-run") (title =? "lf"))
   , ("M-t p", raiseMaybe (runInTerm "-T pulsemixer" "pulsemixer") (title =? "pulsemixer"))
-  , ("M-t f", prompt ("st" ++ " -e") myXPConfig)
   ]
-  ++
-
-  -- Search shit in browser using mutiple search engines
-  [ ("M-f " ++ k, S.promptSearchBrowser myXPConfig "firefox" f) | (k,f) <- searchList]
   ++
 
   -- OPEN WITH DMENU
