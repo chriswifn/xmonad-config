@@ -28,7 +28,6 @@ import XMonad.Actions.EasyMotion (selectWindow)
 -- prompts for open windows and workspaces
 import XMonad.Prompt.Window
 import XMonad.Prompt.Workspace
-import XMonad.Prompt.Pass
 import XMonad.Prompt.RunOrRaise
 import XMonad.Prompt.Shell (prompt)
 import qualified XMonad.Actions.Search as S
@@ -120,6 +119,8 @@ myKeys = \c -> mkKeymap c $
   -- STUFF FOR DYNAMIC PROJECTS (mainly prompts)
   [ ("M-b b", windowPrompt myXPConfig Goto allWindows)
 
+  , ("M-b v", windowPrompt myXPConfig BringCopy allWindows)
+
   , ("M-b g", workspacePrompt myXPConfig (windows . W.view))
 
   , ("M-b c", workspacePrompt myXPConfig (windows . copy))
@@ -140,19 +141,6 @@ myKeys = \c -> mkKeymap c $
 
   , ("M-b l", runOrRaisePrompt myXPConfig)
 
-  ]
-  ++
-
-  -- PASS PROMPTS
-  [ ("M-v c", passPrompt myXPConfig)
-
-  , ("M-v n", passGeneratePrompt myXPConfig)
-
-  , ("M-v t", passTypePrompt myXPConfig)
-
-  , ("M-v e", passEditPrompt myXPConfig)
-
-  , ("M-v r", passRemovePrompt myXPConfig)
   ]
   ++
 
