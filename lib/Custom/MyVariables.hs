@@ -12,6 +12,8 @@ import XMonad.Actions.DynamicProjects
 
 import XMonad.Actions.EasyMotion (EasyMotionConfig (..), fixedSize)
 
+import XMonad.Util.Run
+
 -- st is objectively the best terminal
 myTerminal :: String
 myTerminal = "st "
@@ -36,7 +38,7 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False 
 
 myXPConfig = def
-  { position             = Bottom
+  { position             = Bottom 
   , searchPredicate      = fuzzyMatch
   , sorter               = fuzzySort
   , alwaysHighlight      = True 
@@ -74,7 +76,7 @@ myFont = "xft:Terminus (TTF):regular:size=12:antialias=true:hinting=true"
 myTabConfig = def { fontName = myFont 
                   , activeColor = "#323232"
                   , inactiveColor = "#1e1e1e"
-                  , activeBorderColor = "#323232"
+                  , activeBorderColor = "#ccdfe7"
                   , inactiveBorderColor = "#1e1e1e"
                   , activeTextColor = "#ccdfe7"
                   , inactiveTextColor = "#ccdfe7"
@@ -133,7 +135,7 @@ projects =
 
   , Project { projectName      = fileWS 
             , projectDirectory = "~/"
-            , projectStartHook = Just $ do spawn (myTerminal <> " -e lf-run")
+            , projectStartHook = Just $ do (runInTerm "-T lf" "lf-run") 
             }
 
   , Project { projectName      = officeWS 
