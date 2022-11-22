@@ -186,6 +186,7 @@ myemkillConf = def { txtCol = "#ff8059"
                    , bgCol = "#1e1e1e"
                    , borderCol = "#ccdfe7"
                    , cancelKey = xK_Escape
+                   , overlayF = proportional 0.05
                    , emFont = "xft:Terminus (TTF):regular:size=40:antialias=true:hinting=true"
                    , borderPx = 1
                    }
