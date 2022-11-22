@@ -37,7 +37,7 @@ myKeys = \c -> mkKeymap c $
   -- spawn a terminal
   [ ("M-S-<Return>", spawn $ terminal c)
 
-  , ("M-<Return>", raiseNextMaybe (spawn "st") (className =? "st-256color"))
+  , ("M-<Return>", raiseNextMaybe (spawn "st") (className =? "st-256color" <||> title =? "tmux" <||> title =? "devtmux"))
 
   -- spawn a run launcher (dmenu)
   , ("M-S-p", spawn $ "dmenu_run -l 10 -p 'Application: '")
