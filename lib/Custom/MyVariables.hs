@@ -10,7 +10,7 @@ import XMonad.Prompt.FuzzyMatch
 
 import XMonad.Actions.DynamicProjects
 
-import XMonad.Actions.EasyMotion (EasyMotionConfig (..), fixedSize)
+import XMonad.Actions.EasyMotion (EasyMotionConfig (..), proportional)
 
 import XMonad.Util.Run
 
@@ -172,11 +172,12 @@ projects =
 
 
 myemConf :: EasyMotionConfig
-myemConf = def { txtCol = "#44bc44"
+myemConf = def { txtCol = "#ccdfe7"
                  , bgCol = "#1e1e1e"
                  , borderCol = "#ccdfe7"
                  , cancelKey = xK_Escape
-                 , emFont = "xft:Terminus (TTF):regular:size=80:antialias=true:hinting=true"
+                 , overlayF = proportional 0.05
+                 , emFont = "xft:Terminus (TTF):regular:size=40:antialias=true:hinting=true"
                  , borderPx = 1
                }
 
@@ -185,6 +186,6 @@ myemkillConf = def { txtCol = "#ff8059"
                    , bgCol = "#1e1e1e"
                    , borderCol = "#ccdfe7"
                    , cancelKey = xK_Escape
-                   , emFont = "xft:Terminus (TTF):regular:size=80:antialias=true:hinting=true"
+                   , emFont = "xft:Terminus (TTF):regular:size=40:antialias=true:hinting=true"
                    , borderPx = 1
                    }
