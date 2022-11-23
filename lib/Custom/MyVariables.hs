@@ -161,7 +161,7 @@ projects =
 
   , Project { projectName      = temptermWS 
             , projectDirectory = "~/"
-            , projectStartHook = Nothing 
+            , projectStartHook = Just $ do spawn "st" 
             }
 
   , Project { projectName      = fireWS 
