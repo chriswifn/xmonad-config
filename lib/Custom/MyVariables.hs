@@ -71,7 +71,7 @@ myFocusedBorderColor :: String
 myFocusedBorderColor = "#f78fe7"
 
 myFont :: String
-myFont = "xft:Terminus (TTF):regular:size=12:antialias=true:hinting=true"
+myFont = "xft:Terminus (TTF):style=Regular:size=12:antialias=true:hinting=true"
 
 myTabConfig = def { fontName = myFont 
                   , activeColor = "#323232"
