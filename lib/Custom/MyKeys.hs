@@ -22,7 +22,6 @@ import Custom.MyVariables
 import XMonad.Actions.WindowGo
 -- dynamic projects
 import XMonad.Actions.DynamicProjects
-import XMonad.Actions.DynamicWorkspaceGroups
 
 import XMonad.Actions.EasyMotion (selectWindow)
 
@@ -128,13 +127,6 @@ myKeys = \c -> mkKeymap c $
 
   , ("M-b l", runOrRaisePrompt myXPConfig)
 
-  ]
-  ++
-
-  -- DYNAMIC WORKSPACE GROUPS
-  [ ("M-f n", promptWSGroupAdd myXPConfig "Name this group: ")
-  , ("M-f g", promptWSGroupView myXPConfig "Go to group: ")
-  , ("M-f d", promptWSGroupForget myXPConfig "Forget group: ")
   ]
   ++
 
