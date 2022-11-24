@@ -55,7 +55,7 @@ myXPConfig = def
   , maxComplRows         = Just 10
   , complCaseSensitivity = CaseInSensitive
   , promptKeymap         = emacsLikeXPKeymap
-  , historySize          = 0
+  -- , historySize          = 0
   }
 
 -- border width
