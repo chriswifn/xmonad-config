@@ -132,9 +132,9 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- DYNAMIC WORKSPACE GROUPS
-  [ ("M-y n", promptWSGroupAdd myXPConfig "Name this group: ")
-  , ("M-y g", promptWSGroupView myXPConfig "Go to group: ")
-  , ("M-y d", promptWSGroupForget myXPConfig "Forget group: ")
+  [ ("M-f n", promptWSGroupAdd myXPConfig "Name this group: ")
+  , ("M-f g", promptWSGroupView myXPConfig "Go to group: ")
+  , ("M-f d", promptWSGroupForget myXPConfig "Forget group: ")
   ]
   ++
 

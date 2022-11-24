@@ -8,6 +8,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 -- toggle layouts
 import XMonad.Layout.ToggleLayouts
+import XMonad.Layout.PerWorkspace
 -- for perworkspace to work
 import Custom.MyVariables
 
@@ -19,7 +20,7 @@ myLayoutHook = lessBorders (Combine Difference Screen OnlyScreenFloat)
 
 -- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
-myLayout = toggleLayouts (noBorders Full) (tiled ||| (tabbed shrinkText Custom.MyVariables.myTabConfig))
+myLayout = toggleLayouts (noBorders Full) (onWorkspaces [Custom.MyVariables.webWS, Custom.MyVariables.fireWS] (tabbed shrinkText Custom.MyVariables.myTabConfig) tiled)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
