@@ -38,7 +38,7 @@ myClickJustFocuses :: Bool
 myClickJustFocuses = False 
 
 myXPConfig = def
-  { position             = CenteredAt 0.4 0.5
+  { position             = Bottom 
   , searchPredicate      = fuzzyMatch
   , sorter               = fuzzySort
   , alwaysHighlight      = True 
