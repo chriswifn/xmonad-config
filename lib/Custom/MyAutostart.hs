@@ -10,8 +10,9 @@ import XMonad.Hooks.SetWMName
 -- start some applications on launch and set the WMName
 myStartupHook :: X ()
 myStartupHook = do
+  spawn "xsetroot -cursor_name left_ptr"
   spawnOnce "setxkbmap -option caps:escape"
   spawnOnce "/usr/bin/lxpolkit"
   spawnOnce "dunst"
-  spawnOnce "/usr/bin/emacs --daemon"
+  spawn "/usr/bin/emacs --daemon"
   setWMName "LG3D"
