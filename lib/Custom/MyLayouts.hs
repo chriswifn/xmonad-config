@@ -4,6 +4,8 @@ module Custom.MyLayouts where
 import XMonad
 -- lets you use noBorders and smartBorders
 import XMonad.Layout.NoBorders
+-- gaps
+import XMonad.Layout.Spacing
 -- the tabbed layout is nice for certain tasks (with web browsers)
 import XMonad.Layout.Tabbed
 -- toggle layouts
@@ -15,7 +17,8 @@ import Custom.MyVariables
 -- smartBorders removes the border if there is only one screen and only
 -- one client on a workspace
 -- noBorders removes the border. 
-myLayoutHook = lessBorders (Combine Difference Screen OnlyScreenFloat)
+myLayoutHook = spacingRaw True (Border 2 2 2 2) True (Border 2 2 2 2) True 
+               $ lessBorders (Combine Difference Screen OnlyScreenFloat)
                $ myLayout
 
 -- I only use tiled and tabbed here because I  toggle
