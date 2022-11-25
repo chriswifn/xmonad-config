@@ -55,6 +55,7 @@ myXPConfig = def
   , maxComplRows         = Just 10
   , complCaseSensitivity = CaseInSensitive
   , promptKeymap         = emacsLikeXPKeymap
+  , completionKey        = (controlMask, xK_n)
   -- , historySize          = 0
   }
 
