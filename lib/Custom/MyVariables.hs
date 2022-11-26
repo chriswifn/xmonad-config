@@ -162,7 +162,7 @@ projects =
 
   , Project { projectName      = temptermWS 
             , projectDirectory = "~/"
-            , projectStartHook = Just $ do spawn "st" 
+            , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s tempterm")  
             }
 
   , Project { projectName      = fireWS 
