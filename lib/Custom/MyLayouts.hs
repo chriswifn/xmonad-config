@@ -9,6 +9,7 @@ import XMonad.Layout.Spacing
 -- the tabbed layout is nice for certain tasks (with web browsers)
 import XMonad.Layout.Tabbed
 import XMonad.Layout.OneBig
+import XMonad.Layout.ThreeColumns
 -- toggle layouts
 import XMonad.Layout.ToggleLayouts
 import XMonad.Layout.PerWorkspace
@@ -24,7 +25,7 @@ myLayoutHook = spacingRaw True (Border 2 2 2 2) True (Border 2 2 2 2) True
 
 -- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
-myLayout = toggleLayouts (noBorders Full) (onWorkspaces [Custom.MyVariables.webWS, Custom.MyVariables.fireWS] (tabbed shrinkText Custom.MyVariables.myTabConfig) tiled ||| OneBig (3/4) (3/4))
+myLayout = toggleLayouts (noBorders Full) (onWorkspaces [Custom.MyVariables.webWS, Custom.MyVariables.fireWS] (tabbed shrinkText Custom.MyVariables.myTabConfig) tiled ||| ThreeColMid 1 (3/100) (1/2))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
