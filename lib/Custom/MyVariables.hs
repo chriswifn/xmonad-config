@@ -69,7 +69,7 @@ myNormalBorderColor = "#323232"
 
 -- a nice color that fints the theme
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#ccdfe7"
+myFocusedBorderColor = "#f78fe7"
 
 myFont :: String
 myFont = "xft:Monoid:style=Regular:size=9:antialias=true:hinting=true"
