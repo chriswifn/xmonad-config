@@ -20,8 +20,7 @@ import Custom.MyVariables
 -- one client on a workspace
 -- noBorders removes the border. 
 myLayoutHook = spacingRaw True (Border 2 2 2 2) True (Border 2 2 2 2) True 
-               -- $ lessBorders (Combine Difference Screen OnlyScreenFloat)
-               $ smartBorders
+               $ lessBorders (Combine Difference Screen OnlyScreenFloat)
                $ myLayout
 
 -- I only use tiled and tabbed here because I  toggle
