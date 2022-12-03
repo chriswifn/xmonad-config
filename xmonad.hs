@@ -10,10 +10,11 @@ import Custom.MyKeys
 import Custom.MySwallow
 
 import XMonad.Actions.DynamicProjects
+import XMonad.Hooks.EwmhDesktops
 
 -- the main function: this is where the magic happens
 main :: IO ()
-main = xmonad $ dynamicProjects projects $ defaults
+main = xmonad $ dynamicProjects projects $ ewmh $ defaults
 
 defaults = def {
   -- simple stuff
