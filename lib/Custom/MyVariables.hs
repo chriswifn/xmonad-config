@@ -89,23 +89,11 @@ webWS = "web"
 emacsWS :: String
 emacsWS = "emacs"
 
-devWS :: String
-devWS = "dev"
-
-worktutWS :: String
-worktutWS = "worktut"
-
-worksysWS :: String
-worksysWS = "worksys"
-
-nullWS :: String
-nullWS = "null"
-
 termWS :: String
-termWS = "tempterm"
+termWS = "tmux-session"
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = [webWS, emacsWS, devWS, worktutWS, worksysWS, nullWS, termWS]
+myWorkspaces = [webWS, emacsWS, termWS] 
 
 projects :: [Project]
 projects =
@@ -117,27 +105,6 @@ projects =
   , Project { projectName      = emacsWS
             , projectDirectory = "~/"
             , projectStartHook = Just $ do spawn myEmacs
-            }
-
-  , Project { projectName      = devWS
-            , projectDirectory = "~/"
-            , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s dev")
-            }
-
-  , Project { projectName      = worktutWS 
-            , projectDirectory = "~/Documents/Uni/num_prog"
-            , projectStartHook = Just $ do spawn (myEmacs ++ ("--eval '(dired nil)'"))
-                                           spawn (myTerminal <> " -e tmux new-session -A -s tut")
-            }
-
-  , Project { projectName      = worksysWS 
-            , projectDirectory = "~/"
-            , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s sys") 
-            }
-
-  , Project { projectName      = nullWS 
-            , projectDirectory = "~/"
-            , projectStartHook = Nothing 
             }
 
   , Project { projectName      = termWS 
