@@ -25,7 +25,7 @@ myLayoutHook = spacingRaw True (Border 2 2 2 2) True (Border 2 2 2 2) True
 
 -- I only use tiled and tabbed here because I  toggle
 -- fullscreen layout in MyKeys.hs
-myLayout = toggleLayouts (noBorders Full) (onWorkspaces [Custom.MyVariables.webWS, Custom.MyVariables.fireWS] (noBorders (tabbed shrinkText Custom.MyVariables.myTabConfig)) tiled ||| ThreeColMid 1 (3/100) (1/2))
+myLayout = toggleLayouts (noBorders Full) (onWorkspaces [Custom.MyVariables.webWS] (noBorders (tabbed shrinkText Custom.MyVariables.myTabConfig)) tiled ||| ThreeColMid 1 (3/100) (1/2))
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio

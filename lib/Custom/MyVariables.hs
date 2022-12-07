@@ -92,12 +92,6 @@ emacsWS = "emacs"
 devWS :: String
 devWS = "dev"
 
-fileWS :: String
-fileWS = "file"
-
-officeWS :: String
-officeWS = "office"
-
 worktutWS :: String
 worktutWS = "worktut"
 
@@ -107,15 +101,11 @@ worksysWS = "worksys"
 nullWS :: String
 nullWS = "null"
 
-temptermWS :: String
-temptermWS = "tempterm"
-
-fireWS :: String
-fireWS = "firefox"
-
+termWS :: String
+termWS = "tempterm"
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = [webWS, emacsWS, devWS, fileWS, officeWS, worktutWS, worksysWS, nullWS, temptermWS, fireWS]
+myWorkspaces = [webWS, emacsWS, devWS, worktutWS, worksysWS, nullWS, termWS]
 
 projects :: [Project]
 projects =
@@ -134,16 +124,6 @@ projects =
             , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s dev")
             }
 
-  , Project { projectName      = fileWS 
-            , projectDirectory = "~/"
-            , projectStartHook = Just $ do (runInTerm "-T lf" "lf-run") 
-            }
-
-  , Project { projectName      = officeWS 
-            , projectDirectory = "~/Documents"
-            , projectStartHook = Just $ do spawn "libreoffice" 
-            }
-
   , Project { projectName      = worktutWS 
             , projectDirectory = "~/Documents/Uni/num_prog"
             , projectStartHook = Just $ do spawn (myEmacs ++ ("--eval '(dired nil)'"))
@@ -160,14 +140,9 @@ projects =
             , projectStartHook = Nothing 
             }
 
-  , Project { projectName      = temptermWS 
+  , Project { projectName      = termWS 
             , projectDirectory = "~/"
             , projectStartHook = Just $ do spawn (myTerminal <> " -e tmux new-session -A -s tempterm")  
-            }
-
-  , Project { projectName      = fireWS 
-            , projectDirectory = "~/"
-            , projectStartHook = Just $ do spawn "firefox" 
             }
   ]
 
