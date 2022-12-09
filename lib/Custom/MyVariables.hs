@@ -141,11 +141,6 @@ scratchpads = [ NS "htop" "st -c 'htop' -e htop" (className =? "htop") manageTer
               , NS "pulsemixer" "st -c 'pulsemixer' -e pulsemixer" (className =? "pulsemixer") manageTerm 
               ]
   where
-    manageTerm = customFloating $ W.RationalRect l t w h
-      where
-        h = 0.9
-        w = 0.9
-        t = 0.95 -h
-        l = 0.95 -w
+    manageTerm = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
 
