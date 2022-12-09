@@ -34,98 +34,90 @@ import XMonad.Prompt.RunOrRaise
 myKeys = \c -> mkKeymap c $
   -- ESSENTIAL KEYBINDINGS 
 
-  -- spawn a terminal
-  [ ("M-S-<Return>", spawn $ terminal c)
-
-  , ("M-<Return>", raiseNextMaybe (spawn "st") (className =? "st-256color" <||> title =? "tmux" <||> title =? "devtmux"))
-
-  -- spawn a run launcher (dmenu)
-  , ("M-S-p", spawn $ "dmenu_run -l 10 -p 'Application: '")
+  -- spawn terminal
+  [ ("M-x p", spawn $ "dmenu_run -l 10 -p 'Application: '")
 
   -- kill a window
-  , ("M-S-c", kill1)
+  , ("M-x c", kill1)
 
   -- switch between layouts
-  , ("M-<Space>", sendMessage NextLayout)
+  , ("M-x g n", sendMessage NextLayout)
 
   -- set a layout
-  , ("M-S-<Space>", setLayout $ XMonad.layoutHook c)
+  , ("M-x g l", setLayout $ XMonad.layoutHook c)
 
   -- refresh
-  , ("M-n", refresh)
+  , ("M-x n", refresh)
 
   -- make a client sticky
-  , ("M-s", windows copyToAll)
+  , ("M-x s", windows copyToAll)
 
   -- make a client unsticky
-  , ("M-S-s", killAllOtherCopies)
-
-  -- focus between windows one way
-  , ("M-<Tab>", windows W.focusDown)
+  , ("M-x x s", killAllOtherCopies)
 
   -- focus between windows another way
-  , ("M-j", windows W.focusDown)
-  , ("M-k", windows W.focusUp)
+  , ("M-x j", windows W.focusDown)
+  , ("M-x k", windows W.focusUp)
 
   -- switch focus to the master client
-  , ("M-m", windows W.focusMaster)
+  , ("M-x m", windows W.focusMaster)
 
   -- switch a client in the stack with the master client
-  , ("M-S-m", windows W.swapMaster)
+  , ("M-x x m", windows W.swapMaster)
 
   -- swap windows up and down
-  , ("M-S-j", windows W.swapDown)
-  , ("M-S-k", windows W.swapUp)
+  , ("M-x x j", windows W.swapDown)
+  , ("M-x x k", windows W.swapUp)
 
   -- make client smaller
-  , ("M-h", sendMessage Shrink)
+  , ("M-x h", sendMessage Shrink)
 
   -- make client bigger
-  , ("M-l", sendMessage Expand)
+  , ("M-x l", sendMessage Expand)
 
   -- force floating client back to tiling
-  , ("M-S-t", withFocused $ windows . W.sink)
+  , ("M-x t", withFocused $ windows . W.sink)
 
   -- make a client fullscreen
-  , ("M-S-f", sendMessage $ Toggle "Full")
+  , ("M-x f", sendMessage $ Toggle "Full")
 
   -- increment the amount of master nodes
-  , ("M-d", sendMessage (IncMasterN 1))
+  , ("M-x i", sendMessage (IncMasterN 1))
 
   -- decrement the amount of master nodes
-  , ("M-u", sendMessage (IncMasterN (-1)))
+  , ("M-x u", sendMessage (IncMasterN (-1)))
 
   -- recompile and restart XMonad
-  , ("M-q", spawn $ "xmonad --recompile; xmonad --restart")
+  , ("M-x r", spawn $ "xmonad --recompile; xmonad --restart")
 
   -- quit XMonad
-  , ("M-S-q", io (exitWith ExitSuccess))]
+  , ("M-x q", io (exitWith ExitSuccess))]
   ++
 
   -- STUFF FOR DYNAMIC PROJECTS (mainly prompts)
-  [ ("M-b b", windowPrompt myXPConfig Goto allWindows)
+  [ ("M-p w", windowPrompt myXPConfig Goto allWindows)
 
-  , ("M-b v", windowPrompt myXPConfig BringCopy allWindows)
+  , ("M-p b", windowPrompt myXPConfig BringCopy allWindows)
 
-  , ("M-b g", workspacePrompt myXPConfig (windows . W.view))
+  , ("M-p g", workspacePrompt myXPConfig (windows . W.view))
 
-  , ("M-b c", workspacePrompt myXPConfig (windows . copy))
+  , ("M-p c", workspacePrompt myXPConfig (windows . copy))
 
-  , ("M-b f", selectWindow myemConf >>=  (`whenJust` windows . W.focusWindow))
+  , ("M-p f", selectWindow myemConf >>=  (`whenJust` windows . W.focusWindow))
 
-  , ("M-b k", selectWindow myemkillConf >>=  (`whenJust` killWindow))
+  , ("M-p k", selectWindow myemkillConf >>=  (`whenJust` killWindow))
 
-  , ("M-b p", switchProjectPrompt myXPConfig)
+  , ("M-p p", switchProjectPrompt myXPConfig)
 
-  , ("M-b r", renameProjectPrompt myXPConfig)
+  , ("M-p r", renameProjectPrompt myXPConfig)
 
-  , ("M-b d", changeProjectDirPrompt myXPConfig)
+  , ("M-p d", changeProjectDirPrompt myXPConfig)
 
-  , ("M-b s", shiftToProjectPrompt myXPConfig)
+  , ("M-p s", shiftToProjectPrompt myXPConfig)
 
-  , ("M-b t", toggleWS)
+  , ("M-p t", toggleWS)
 
-  , ("M-b l", runOrRaisePrompt myXPConfig)
+  , ("M-p l", runOrRaisePrompt myXPConfig)
 
   ]
   ++
@@ -150,8 +142,9 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- TERMINAL PROGRAMS
-  [ ("M-t t", raiseMaybe (runInTerm "-T tmux" "tmux") (title =? "tmux"))
-  , ("M-t n", raiseMaybe (runInTerm "-T nvim" "nvim") (title =? "nvim"))
+  [ ("M-t t", raiseNextMaybe (spawn "st") (className =? "st-256color" <||> title =? "tmux" <||> title =? "devtmux"))
+  , ("M-t n", spawn $ terminal c)
+  , ("M-t d", raiseMaybe (runInTerm "-T nvim" "nvim") (title =? "nvim"))
   , ("M-t h", raiseMaybe (runInTerm "-T htop" "htop") (title =? "htop"))
   , ("M-t a", raiseMaybe (runInTerm "-T cmus" "cmus") (title =? "cmus"))
   , ("M-t r", raiseMaybe (runInTerm "-T lf" "lf-run") (title =? "lf"))
@@ -168,19 +161,19 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- DMENU SCRIPTS (keyboard and touchpad are not dmenu scripts)
-  [ ("M-p a", spawn $ "dmenu_run -l 10 -p 'Application: '")
-  , ("M-p m", spawn $ "monitors")
-  , ("M-p b", spawn $ "bookmarks")
-  , ("M-p k", spawn $ "keyboard")
-  , ("M-p s", spawn $ "maimmenu")
-  , ("M-p i", spawn $ "network")
-  , ("M-p l", spawn $ "logoutmenu")
-  , ("M-p p", spawn $ "passmenu -l 20 -p 'Password: '")
-  , ("M-p w", spawn $ "connectwifi")
-  , ("M-p e", spawn $ "emojipicker")
-  , ("M-p v", spawn $ "audiodevice")
-  , ("M-p c", spawn $ "audioinputdevice")
-  , ("M-p t", spawn $ "touchpad")
+  [ ("M-d a", spawn $ "dmenu_run -l 10 -p 'Application: '")
+  , ("M-d m", spawn $ "monitors")
+  , ("M-d b", spawn $ "bookmarks")
+  , ("M-d k", spawn $ "keyboard")
+  , ("M-d s", spawn $ "maimmenu")
+  , ("M-d i", spawn $ "network")
+  , ("M-d l", spawn $ "logoutmenu")
+  , ("M-d p", spawn $ "passmenu -l 20 -p 'Password: '")
+  , ("M-d w", spawn $ "connectwifi")
+  , ("M-d e", spawn $ "emojipicker")
+  , ("M-d v", spawn $ "audiodevice")
+  , ("M-d c", spawn $ "audioinputdevice")
+  , ("M-d t", spawn $ "touchpad")
   ]
   ++
 
