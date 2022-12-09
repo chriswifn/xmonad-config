@@ -30,6 +30,9 @@ import XMonad.Prompt.Window
 import XMonad.Prompt.Workspace
 import XMonad.Prompt.RunOrRaise
 
+-- scratchpads
+import XMonad.Util.NamedScratchpad
+
 -- Keymaps
 myKeys = \c -> mkKeymap c $
   -- ESSENTIAL KEYBINDINGS 
@@ -133,6 +136,12 @@ myKeys = \c -> mkKeymap c $
   --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
   -- ++
 
+  -- SCRATCHPADS
+  [ ("M-s h", namedScratchpadAction scratchpads "htop")
+  , ("M-s p", namedScratchpadAction scratchpads "pulsemixer")
+  ]
+  ++
+
   -- EMACS PROGRAMS
   [ ("M-e e", raiseNextMaybe (spawn myEmacs) (className =? "Emacs"))
   , ("M-e b", spawn $ myEmacs ++ ("--eval '(ibuffer)'"))
@@ -145,10 +154,8 @@ myKeys = \c -> mkKeymap c $
   [ ("M-t t", raiseNextMaybe (spawn "st") (className =? "st-256color" <||> title =? "tmux" <||> title =? "devtmux"))
   , ("M-t n", spawn $ terminal c)
   , ("M-t d", raiseMaybe (runInTerm "-T nvim" "nvim") (title =? "nvim"))
-  , ("M-t h", raiseMaybe (runInTerm "-T htop" "htop") (title =? "htop"))
   , ("M-t a", raiseMaybe (runInTerm "-T cmus" "cmus") (title =? "cmus"))
   , ("M-t r", raiseMaybe (runInTerm "-T lf" "lf-run") (title =? "lf"))
-  , ("M-t p", raiseMaybe (runInTerm "-T pulsemixer" "pulsemixer") (title =? "pulsemixer"))
   ]
   ++
 

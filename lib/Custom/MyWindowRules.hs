@@ -12,6 +12,9 @@ import qualified XMonad.StackSet as W
 import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat, doCenterFloat)
 import XMonad.Hooks.InsertPosition
 
+-- scratchpad
+import XMonad.Util.NamedScratchpad
+
 -- I need my variables to shift clients to specific workspaces
 import Custom.MyVariables
 
@@ -25,7 +28,7 @@ generalManageHook = insertPosition Master Newer <> composeAll
   , className =? "error"          --> doFloat
   , className =? "dialog"         --> doFloat
   , className =? "MATLAB R2022b - academic use" --> doFloat
-  , className =? "splash"         --> doFloat]
+  , className =? "splash"         --> doFloat] <+> namedScratchpadManageHook scratchpads
 
 manageZoomHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 manageZoomHook =
