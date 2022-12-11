@@ -14,9 +14,6 @@ import XMonad.Actions.EasyMotion (EasyMotionConfig (..), proportional)
 
 import XMonad.Util.Run
 
-import XMonad.Util.NamedScratchpad
-import XMonad.StackSet as W
-
 -- st is objectively the best terminal
 myTerminal :: String
 myTerminal = "st "
@@ -136,11 +133,5 @@ myemkillConf = def { txtCol = "#ff8059"
                    , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"
                    , borderPx = 1
                    }
-
-scratchpads = [ NS "htop" "st -c 'htop' -e htop" (className =? "htop") manageTerm 
-              , NS "pulsemixer" "st -c 'pulsemixer' -e pulsemixer" (className =? "pulsemixer") manageTerm 
-              ]
-  where
-    manageTerm = customFloating $ W.RationalRect (1/6) (1/6) (2/3) (2/3)
 
 

@@ -30,9 +30,6 @@ import XMonad.Prompt.Window
 import XMonad.Prompt.Workspace
 import XMonad.Prompt.RunOrRaise
 
--- scratchpads
-import XMonad.Util.NamedScratchpad
-
 -- Keymaps
 myKeys = \c -> mkKeymap c $
   -- ESSENTIAL KEYBINDINGS 
@@ -135,12 +132,6 @@ myKeys = \c -> mkKeymap c $
   --       | (i, k) <- zip (myWorkworkspaces) (map show [1 :: Int ..])
   --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
   -- ++
-
-  -- SCRATCHPADS
-  [ ("M-s h", namedScratchpadAction scratchpads "htop")
-  , ("M-s p", namedScratchpadAction scratchpads "pulsemixer")
-  ]
-  ++
 
   -- EMACS PROGRAMS
   [ ("M-e e", raiseNextMaybe (spawn myEmacs) (className =? "Emacs"))
