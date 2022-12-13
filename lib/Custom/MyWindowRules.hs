@@ -16,7 +16,7 @@ import XMonad.Hooks.InsertPosition
 import Custom.MyVariables
 
 generalManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
-generalManageHook = insertPosition Master Newer <> composeAll
+generalManageHook = insertPosition End Newer <> composeAll
   [ className =? "MPlayer"        --> doFloat
   , className =? "Gimp"           --> doFloat
   , resource  =? "desktop_window" --> doIgnore
