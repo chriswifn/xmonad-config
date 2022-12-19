@@ -72,9 +72,9 @@ myFocusedBorderColor :: String
 myFocusedBorderColor = "#f78fe7"
 
 myFont :: String
--- myFont = "xft:Monoid:style=Regular:size=9:antialias=true:hinting=true"
+myFont = "xft:Monoid:style=Regular:size=9:antialias=true:hinting=true"
 -- myFont = "xft:Terminus:style=Regular:size=12:antialias=true:hinting=true"
-myFont = "xft:Iosevke Comfy Wide Fixed:style=Regular:size=11:antialias=true:hinting=true"
+-- myFont = "xft:Iosevke Comfy Wide Fixed:style=Regular:size=11:antialias=true:hinting=true"
 
 myTabConfig = def { fontName = myFont 
                   , activeColor = "#323232"
@@ -122,8 +122,8 @@ myemConf = def { txtCol = "#ccdfe7"
                  , borderCol = "#ccdfe7"
                  , cancelKey = xK_Escape
                  , overlayF = proportional 0.05
-                 -- , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"
-                 , emFont = "xft:Iosevka Comfy Wide Fixed:style=Regular:size=20:antialias=true:hinting=true"
+                 , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"
+                 -- , emFont = "xft:Iosevka Comfy Wide Fixed:style=Regular:size=20:antialias=true:hinting=true"
                  -- , emFont = "xft:Terminus:style=Regular:size=20:antialias=true:hinting=true"
                  , borderPx = 1
                }
@@ -134,8 +134,8 @@ myemkillConf = def { txtCol = "#ff8059"
                    , borderCol = "#ccdfe7"
                    , cancelKey = xK_Escape
                    , overlayF = proportional 0.05
-                   -- , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"
-                   , emFont = "xft:Iosevka Comfy Wide Fixed:style=Regular:size=20:antialias=true:hinting=true"
+                   , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"
+                   -- , emFont = "xft:Iosevka Comfy Wide Fixed:style=Regular:size=20:antialias=true:hinting=true"
                    -- , emFont = "xft:Terminus:style=Regular:size=20:antialias=true:hinting=true"
                    , borderPx = 1
                    }
