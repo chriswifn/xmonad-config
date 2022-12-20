@@ -25,7 +25,10 @@ generalManageHook = insertPosition Master Newer <> composeAll
   , className =? "error"          --> doFloat
   , className =? "dialog"         --> doFloat
   , className =? "MATLAB R2022b - academic use" --> doFloat
-  , className =? "splash"         --> doFloat]
+  , className =? "splash"         --> doFloat
+  , className =? "firefox"        --> viewShift webWS 
+  ]
+  where viewShift = doF . liftM2 (.) W.view W.shift
 
 manageZoomHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 manageZoomHook =
