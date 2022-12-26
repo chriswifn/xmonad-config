@@ -14,9 +14,12 @@ import XMonad.Actions.EasyMotion (EasyMotionConfig (..), proportional)
 
 import XMonad.Util.Run
 
+-- Colorscheme
+import Colors.ModusVivendi
+
 -- st is objectively the best terminal
 myTerminal :: String
-myTerminal = "st "
+myTerminal = "alacritty "
 
 -- emacs is objectively the best text editor
 myEmacs :: String
@@ -42,15 +45,15 @@ myXPConfig = def
   , searchPredicate      = fuzzyMatch
   , sorter               = fuzzySort
   , alwaysHighlight      = True 
-  , borderColor          = "#ccdfe7"
-  , bgColor              = "#1e1e1e" 
-  , fgColor              = "#ccdfe7" 
-  , bgHLight             = "#f78fe7"
-  , fgHLight             = "#000000" 
-  , defaultText          = ""
+  , borderColor          = color06
+  , bgColor              = colorBack 
+  , fgColor              = colorFore 
+  , bgHLight             = color06 
+  , fgHLight             = colorBack 
+  , defaultText          = "" 
   , font                 = myFont 
   , height               = 20
-  , promptBorderWidth    = 0
+  , promptBorderWidth    = 2
   , maxComplColumns      = Just 1
   , maxComplRows         = Just 10
   , complCaseSensitivity = CaseInSensitive
@@ -61,15 +64,15 @@ myXPConfig = def
 
 -- border width
 myBorderWidth :: Dimension 
-myBorderWidth = 1
+myBorderWidth = 2
 
 -- black is my primary background color, inactive border should blend into the background
 myNormalBorderColor :: String
-myNormalBorderColor = "#323232"
+myNormalBorderColor = colorBack 
 
 -- a nice color that fints the theme
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#f78fe7"
+myFocusedBorderColor = color06 
 
 myFont :: String
 myFont = "xft:Monoid:style=Regular:size=9:antialias=true:hinting=true"
@@ -117,9 +120,9 @@ projects =
 
 
 myemConf :: EasyMotionConfig
-myemConf = def { txtCol = "#ccdfe7"
-                 , bgCol = "#1e1e1e"
-                 , borderCol = "#ccdfe7"
+myemConf = def { txtCol = colorFore 
+                 , bgCol = colorBack 
+                 , borderCol = color06 
                  , cancelKey = xK_Escape
                  , overlayF = proportional 0.05
                  , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"
@@ -129,9 +132,9 @@ myemConf = def { txtCol = "#ccdfe7"
                }
 
 myemkillConf :: EasyMotionConfig
-myemkillConf = def { txtCol = "#ff8059"
-                   , bgCol = "#1e1e1e"
-                   , borderCol = "#ccdfe7"
+myemkillConf = def { txtCol = color02 
+                   , bgCol = colorBack
+                   , borderCol = color06 
                    , cancelKey = xK_Escape
                    , overlayF = proportional 0.05
                    , emFont = "xft:Monoid:style=Regular:size=20:antialias=true:hinting=true"

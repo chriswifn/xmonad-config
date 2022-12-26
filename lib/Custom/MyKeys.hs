@@ -35,7 +35,7 @@ myKeys = \c -> mkKeymap c $
   -- ESSENTIAL KEYBINDINGS 
 
   -- spawn terminal
-  [ ("M-x p", spawn $ "dmenu_run -l 10 -p 'Application: '")
+  [ ("M-x p", spawn $ "rofi -show run")
 
   -- kill a window
   , ("M-x c", kill1)
@@ -142,7 +142,7 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- TERMINAL PROGRAMS
-  [ ("M-t t", raiseNextMaybe (spawn "st") (className =? "st-256color" <||> title =? "tmux" <||> title =? "devtmux"))
+  [ ("M-t t", raiseNextMaybe (spawn myTerminal) (className =? "Alacritty" <||> title =? "tmux" <||> title =? "devtmux"))
   , ("M-t n", spawn $ terminal c)
   , ("M-t d", raiseMaybe (runInTerm "-T nvim" "nvim") (title =? "nvim"))
   , ("M-t a", raiseMaybe (runInTerm "-T cmus" "cmus") (title =? "cmus"))
@@ -159,7 +159,7 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- DMENU SCRIPTS (keyboard and touchpad are not dmenu scripts)
-  [ ("M-d a", spawn $ "dmenu_run -l 10 -p 'Application: '")
+  [ ("M-d a", spawn $ "rofi -show run")
   , ("M-d m", spawn $ "monitors")
   , ("M-d b", spawn $ "bookmarks")
   , ("M-d k", spawn $ "keyboard")
@@ -171,7 +171,8 @@ myKeys = \c -> mkKeymap c $
   , ("M-d e", spawn $ "emojipicker")
   , ("M-d v", spawn $ "audiodevice")
   , ("M-d c", spawn $ "audioinputdevice")
-  , ("M-d t", spawn $ "touchpad")
+  , ("M-d t", spawn $ "delight")
+  , ("M-d x", spawn $ "touchpad")
   ]
   ++
 
