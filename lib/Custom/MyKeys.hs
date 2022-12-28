@@ -123,15 +123,10 @@ myKeys = \c -> mkKeymap c $
   ++
 
   -- WORKSPACE STUFF
-  -- [ ("M-" ++ m ++ k, windows $ f i)
-  --       | (i, k) <- zip (myMainworkspaces) (map show [1 :: Int ..])
-  --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  -- ++
-
-  -- [ ("M-M1-" ++ m ++ k, windows $ f i)
-  --       | (i, k) <- zip (myWorkworkspaces) (map show [1 :: Int ..])
-  --       , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
-  -- ++
+  [ ("M-" ++ m ++ k, windows $ f i)
+        | (i, k) <- zip (myWorkspaces) (map show [1 :: Int ..])
+        , (f, m) <- [(W.greedyView, ""), (W.shift, "S-"), (copy, "S-C-")]]
+  ++
 
   -- EMACS PROGRAMS
   [ ("M-e e", raiseNextMaybe (spawn myEmacs) (className =? "Emacs"))
