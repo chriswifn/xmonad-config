@@ -15,7 +15,7 @@ import XMonad.Actions.EasyMotion (EasyMotionConfig (..), proportional)
 import XMonad.Util.Run
 
 -- Colorscheme
-import Colors.ModusVivendi
+import Colors.ModusOperandi
 
 -- st is objectively the best terminal
 myTerminal :: String
